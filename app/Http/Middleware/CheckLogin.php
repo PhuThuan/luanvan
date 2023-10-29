@@ -16,15 +16,18 @@ class CheckLogin
      */
     public function handle(Request $request, Closure $next): Response
     {
+    
         if (isset(Auth::user()->role)){
             if(Auth::user()->role==0){
-                
-                return $next($request);
+            
+                return  $next($request);
             }
-            // if(Auth::user()->role!=0){
+            if(Auth::user()->role==1){
+              
+                return to_route('error');
+            }
           
-            //     return to_route('dashboard');
-            // } 
+
         }
         
         

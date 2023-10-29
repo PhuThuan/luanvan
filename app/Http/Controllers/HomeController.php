@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
+
+use App\Models\patientRecordsModel;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if (isset(Auth::user()->role)) {
+            if (Auth::user()->role != 0) {
+
+                return   to_route('error');
+            }
+        }
+        $id_user = Auth()->id();
+        $patientRecords = PatientRecordsModel::where('id_user', $id_user)
+            ->where('status', 1)
+            ->get();
+
+        return view('home',['patientrecords'=>$patientRecords]);
     }
 }

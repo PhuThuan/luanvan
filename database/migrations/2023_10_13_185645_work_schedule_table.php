@@ -12,17 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('doctors', function (Blueprint $table) {
+        Schema::create('work_schedules', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_address');
-            $table->string('id_user');
-            $table->string('id_specialty');
-            $table->string('full_name');
-            $table->string('sex');
-            $table->string('Qualifications');
-            $table->timestamps();
+            $table->integer('id_working_time');
+            $table->integer('id_doctor');
+            $table->integer('status');
+            $table->timestamps(); // Adds created_at and updated_at columns
         });
-        
     }
 
     /**

@@ -11,17 +11,20 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
+    <!-- Include the Nunito font from a CDN -->
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <!-- You can use Vite or other build tools to include your assets here -->
 </head>
-<body>
+<body class="bg-gray-100"> <!-- Apply a background color -->
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container mx-auto"> <!-- Apply centering using mx-auto -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                   MedPro
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
