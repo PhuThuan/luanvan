@@ -65,12 +65,15 @@
                                     class="absolute  px-1 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full"></span>
 
                             </span>
-                          </a>
+                        </a>
                     </li>
                     <li>
-                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="flex items-center mx-2 hover:text-blue-100">
+                        <a href="#"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            class="flex items-center mx-2 hover:text-blue-100">
                             <span class="inline-flex mr-1">
-                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013 3h4a3 3 0 013 3v1">
                                     </path>
@@ -78,11 +81,11 @@
                             </span>
                             Logout
                         </a>
-                        
+
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                        
+
                     </li>
                 </ul>
             </div>
@@ -108,7 +111,7 @@
                 </a>
               </li> -->
                     <li>
-                        <a href="#"
+                        <a href="{{route('adminSys')}}"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <i class="fas fa-tag  w-5 h-5"></i>
@@ -120,57 +123,58 @@
                     </li>
                     <li>
 
-                        <a href="{{route('hospital')}}"
+                        <a href="{{ route('hospital') }}"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <i class="fas fa-users  w-5 h-5"></i>
                                 <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg> -->
                             </span>
                             <span class="ml-2 text-sm tracking-wide truncate">Thông tin phòng khám</span>
-                          </a>
+                        </a>
                     </li>
                     <li>
-                    <li>
 
-                        <A href="{{ route('Doctor') }}"
+                        <a href="{{ route('questions') }}"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <i class="fas fa-users  w-5 h-5"></i>
                                 <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg> -->
                             </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Thông tin bác sĩ</span>
-                        </A>
+                            <span class="ml-2 text-sm tracking-wide truncate">Câu hỏi thường gặp</span>
+                        </a>
                     </li>
                     <li>
-                        <A href="/workSchedule"
+
+                        <a href="{{ route('News') }}"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
-                                <i class="fas fa-shopping-cart   w-5 h-5"></i>
+                                <i class="fas fa-users  w-5 h-5"></i>
                                 <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg> -->
                             </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Lịch làm việc</span>
-                        </A>
+                            <span class="ml-2 text-sm tracking-wide truncate">Tin tức</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="/admin/service"
+
+                        <a href="{{ route('admincontac') }}"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
-                                <i class="fas fa-tag  w-5 h-5"></i>
+                                <i class="fas fa-users  w-5 h-5"></i>
                                 <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg> -->
                             </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Thống kê</span>
-                          </a>
+                            <span class="ml-2 text-sm tracking-wide truncate">Hợp tác</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500   pr-6">
+
+                        <a href="{{ route('adminpatientinformation') }}"
+                            class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
-                                <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg> -->
-                                <i class="fas fa-file-alt w-5 h-5"></i>
+                                <i class="fas fa-users  w-5 h-5"></i>
+                                <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg> -->
                             </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Báo cáo</span>
-                            <!-- <span class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full">1.2k</span> -->
-                          </a>
+                            <span class="ml-2 text-sm tracking-wide truncate">Thông tin bệnh nhân</span>
+                        </a>
                     </li>
                     <li class="px-5 hidden md:block">
                         <div class="flex flex-row items-center mt-5 h-8">
@@ -200,7 +204,7 @@
                             </span>
 
                             <span class="ml-2 text-sm tracking-wide truncate">Permission</span>
-                          </a>
+                        </a>
                     </li>
                 </ul>
                 <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright @2023</p>
@@ -212,7 +216,17 @@
 
             <div class="mt-4 mx-4">
 
-
+                <div class="grid grid-cols-3 gap-4">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-full">Số Người truy cập trong hôm nay: {{$users}}</button>
+                    <button class="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded-full">Số lịch khám trong ngày: {{$appointmentSchedule}}</button>
+                    <button class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-full">Số bệnh viện trong hệ thống: {{$hospital}}</button>
+                    
+                    <button class="bg-yellow-500 hover:bg-yellow-700 text-white py-2 px-4 rounded-full">Sô bác sĩ trong hệ thống: {{$doctor}}</button>
+                    <button class="bg-purple-500 hover:bg-purple-700 text-white py-2 px-4 rounded-full">Button 5</button>
+                    <button class="bg-orange-500 hover:bg-orange-700 text-white py-2 px-4 rounded-full">Button 6</button>
+                </div>
+                
+                
 
 
 
@@ -222,7 +236,7 @@
 
         </div>
     </div>
-    </div>
+    
 
 
 

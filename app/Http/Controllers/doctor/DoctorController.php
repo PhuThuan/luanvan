@@ -7,6 +7,7 @@ use App\Http\Requests\AddDoctorRequest;
 use App\Models\AddressModel;
 use App\Models\DoctorModel;
 use App\Models\hospitalModel;
+use App\Models\ScheduleModel;
 use App\Models\SpecialtyModel;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -99,8 +100,15 @@ class DoctorController extends Controller
         $doctors = [];
         
         foreach ($specialty as $specialties) {
-            $doctors = DoctorModel::where('id_specialty', $specialties['id'])->get();
-        
+            $temptDoctors = DoctorModel::where('id_specialty', $specialties['id'])->get();
+            $namespecialty=$specialties['name'];
+            
+            foreach ($temptDoctors as $doctor) {
+               $address = AddressModel::where('id', $doctor['id'])->first();
+                $doctor['address']=  $address['street_address'].' '.$address['commune'].' '.$address['district'].' '.$address['province'];
+                $doctor['specialty'] = $namespecialty;
+                $doctors[] = $doctor->toArray();
+            }
         }
         
        
@@ -108,7 +116,7 @@ class DoctorController extends Controller
 
 
 
-        return view('Doctor/DoctorAccount', ['doctors' => $doctors, 'specialty' => $specialty]);
+        return view('Doctor/DoctorAccount', ['doctors' => $doctors, 'specialty' => $specialty,  'user'=>$user]);
     }
     public function adddoctor(AddDoctorRequest $request)
     {
@@ -146,7 +154,11 @@ class DoctorController extends Controller
         if ($doctor) {
             $doctor->delete();
         }
-
+        $working = ScheduleModel::where('id_doctor',)->first();
+        if ($working) {
+            $working->delete();
+        }
+        
         return redirect()->back();
     }
 }

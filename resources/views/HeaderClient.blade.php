@@ -4,7 +4,7 @@
             <a href="{{ url('/') }}">
                 <h1
                     class="text-right text-black font-semibold  text-black hover:text-slate-900 dark:text-slate-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                    MEDPRO
+                    Easy
                 </h1>
             </a>
         </div>

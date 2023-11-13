@@ -3,39 +3,69 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendMail;
+use App\Models\AddressModel;
 use App\Models\appointmentScheduleModel;
+use App\Models\CostModel;
+use App\Models\DoctorModel;
+use App\Models\hospitalModel;
+use App\Models\patientRecordsModel;
 use App\Models\ScheduleModel;
+use App\Models\SpecialtyModel;
+use App\Models\WorkkingtimeModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PayController extends Controller
 {
     //3
 
-    public function index($idrc,$idws)
-    {
-        $appointmentschedule=appointmentScheduleModel::create([
-            'id_patient_records'=>$idws,
-            'id_work_schedule'=>$idrc,
-            'status'=>1,
+    public function index($idrc, $idws)
+    { 
+        $pr =   patientRecordsModel::find($idws);
+     
+        $sch =    ScheduleModel::find($idrc);
+
+        $doctor = DoctorModel::find($sch['id_doctor']);
+
+        $Specialty =  SpecialtyModel::find($doctor['id_specialty']);
+
+        $hospital = hospitalModel::find($Specialty['id_hospital']);
+        $address = AddressModel::find($hospital['id_address']);
+        $nameAddress = $address['street_address'] . ' ' . $address['commune'] . ' ' . $address['district'] . ' ' . $address['province'];
+        $time = WorkkingtimeModel::find($sch['id_working_time']);
+
+        $appointmentschedule =   appointmentScheduleModel::create([
+            'id_patient_records' => $idws,
+            'name' => $pr['name'],
+            'age' => $pr['date_of_birth'],
+            'gender' => $pr['gender'],
+            'doctor' =>  $doctor['full_name'],
+            'specialty' => $Specialty['name'],
+            'hospital' =>  $hospital['name'],
+            'address' => $nameAddress,
+            'start_time' => $time['start_time'],
+            'end_time' => $time['end_time'],
+            'day' => $time['day'],
         ]);
         ScheduleModel::where('id', $idrc)->update([
             'status' => 1,
         ]);
+        Mail::to( $pr['email'])->send(new SendMail($appointmentschedule));
 
-
-
+$cost=CostModel::find( $hospital['id']);
         error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
         date_default_timezone_set('Asia/Ho_Chi_Minh');
 
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://luanvan.localhost/phieu-kham/".$appointmentschedule['id'];
+        $vnp_Returnurl = "http://luanvan.localhost/phieu-kham/" . $appointmentschedule['id'];
         $vnp_TmnCode = "1R2P1YYL"; //Mã website tại VNPAY 
         $vnp_HashSecret = "CUSBWNZOJTZZQXZVBXGVARAIKKNYIMSI"; //Chuỗi bí mật
 
         $vnp_TxnRef =  $appointmentschedule['id']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo = 'thanh toan';
         $vnp_OrderType = 'bill';
-        $vnp_Amount = 100000 * 100;
+        $vnp_Amount = $cost['cost'];
         $vnp_Locale = 'vn';
         $vnp_BankCode = 'NCB';
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
@@ -126,10 +156,9 @@ class PayController extends Controller
             header('Location: ' . $vnp_Url);
             die();
         } else {
-         return redirect($returnData['data']);
-          
+            return redirect($returnData['data']);
         }
         // vui lòng tham khảo thêm tại code demo
-     
+
     }
 }

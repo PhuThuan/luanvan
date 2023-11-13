@@ -5,24 +5,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Easy</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
-    <!-- Styles -->
+   
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-    <header id="body-header" class="grid grid-cols-3 gap-3 text-black bg-zinc-50 ">
+    <header id="body-header" class="grid grid-cols-3 gap-3 text-black bg-zinc-50  ">
         <div class="relative group w-40 p-6 text-3xl">
             <div class="text-white py-2 px-4 cursor-pointer">
                 <a href="{{ url('/') }}">
                     <h1
                         class="text-right text-black font-semibold  text-black hover:text-slate-900 dark:text-slate-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                        MEDPRO
+                        Easy
                     </h1>
                 </a>
             </div>
@@ -99,7 +95,7 @@
             </div>
         </div>
     </header>
-    <div class=" inset-0    bg-cover bg-center h-[48rem] "
+    <div class=" inset-0  bg-cover bg-center h-[48rem] "
         style="background-image: url('{{ asset('images/bg_new.png') }}');">
 
         <h1 class="px-[250px] pt-[250px] text-2xl">Nền tảng công nghệ </h1>
@@ -118,12 +114,12 @@
     <div class="bg-gray-100 ml-[25%]  pt-[30px]   w-[56rem] ">
         <div class="grid grid-cols-3 gap-4">
             <div class="col-span-1">
-                <h1 class="text-3xl font-semibold">MEDPRO</h1>
+                <h1 class="text-3xl font-semibold">Easy</h1>
                 <h1 class="text-2xl font-semibold mt-4">Đặt lịch khám bệnh</h1>
             </div>
             <div class="col-span-2">
                 <p class="text-lg text-gray-700">
-                    Medpro cung cấp dịch vụ đặt khám nhanh, lấy số thứ tự trực tuyến và tư vấn sức khỏe từ xa tại các Cơ
+                    Easy cung cấp dịch vụ đặt khám nhanh, lấy số thứ tự trực tuyến và tư vấn sức khỏe từ xa tại các Cơ
                     sở Y tế hàng đầu Việt Nam như Bệnh viện Đại học Y Dược TP.HCM, Bệnh viện Chợ Rẫy và Bệnh viện Nhi
                     Đồng...
                 </p>
@@ -178,30 +174,26 @@
         <div class="text-center">
             <h1 class="text-xl font-semibold">Số liệu thống kê</h1>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mt-4">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mt-4">
             <div class="text-center rounded-lg border p-4">
                 <img src="{{ asset('images/img1.svg') }}" class="w-16 h-16 mx-auto" alt="Hình 1">
-                <h1 class="text-sm mt-2">Lượt khám</h1>
-            </div>
-            <div class="text-center rounded-lg border p-4">
-                <img src="{{ asset('images/img2.svg') }}" class="w-16 h-16 mx-auto" alt="Hình 2">
-                <h1 class="text-sm mt-2">Bệnh viện</h1>
+                <h1 class="text-sm mt-2">Lượt khám: {{$appointmentSchedule}}</h1>
             </div>
             <div class="text-center rounded-lg border p-4">
                 <img src="{{ asset('images/img3.svg') }}" class="w-16 h-16 mx-auto" alt="Hình 3">
-                <h1 class="text-sm mt-2">Cơ sở Y tế</h1>
+                <h1 class="text-sm mt-2">Cơ sở Y tế: {{$hospital}}</h1>
             </div>
             <div class="text-center rounded-lg border p-4">
                 <img src="{{ asset('images/img4.svg') }}" class="w-16 h-16 mx-auto" alt="Hình 4">
-                <h1 class="text-sm mt-2">Bác sĩ</h1>
+                <h1 class="text-sm mt-2">Bác sĩ: {{$doctor}}</h1>
             </div>
             <div class="text-center rounded-lg border p-4">
                 <img src="{{ asset('images/img5.svg') }}" class="w-16 h-16 mx-auto" alt="Hình 5">
-                <h1 class="text-sm mt-2">Lượt truy cập tháng</h1>
+                <h1 class="text-sm mt-2">Lượt truy cập tháng: {{$turnsofusemonth}}</h1>
             </div>
             <div class="text-center rounded-lg border p-4">
                 <img src="{{ asset('images/img6.svg') }}" class="w-16 h-16 mx-auto" alt="Hình 6">
-                <h1 class="text-sm mt-2">Lượt truy cập trong ngày</h1>
+                <h1 class="text-sm mt-2">Lượt truy cập trong ngày: {{$turnsofuse}}</h1>
             </div>
         </div>
     </div>

@@ -127,7 +127,22 @@ class workScheduleController extends Controller
       }
      
     }
-   
+    $today1 = Carbon::now('Asia/Ho_Chi_Minh')->startOfWeek();
+    $today2 = $today1->copy()->endOfWeek();
+    $nextWeek = [];
+
+    for ($i = 0; $i <= 8; $i++) {
+      $nextWeek[] = $today1->toDateString() . ' đến ' . $today2->toDateString();
+      $today1->addDays(7);
+      $today2->addDays(7);
+    }
+
+   if($timework==null){
+    $time = [
+      '8' => 'Không làm việc',
+    ];
+    return  view('doctor/addworkSchedule', ['settings' => $settings, 'doctors' => $doctors, 'dateArrays' => $dateArray, 'timework' => $time, 'dates' => $dates, 'nextWeek' => $nextWeek]);
+   }
     if (count($timework) == 3) {
       $time = [
         '1' => 'Buổi sáng',
@@ -181,16 +196,7 @@ class workScheduleController extends Controller
         ];
       }
     }
-    $today1 = Carbon::now('Asia/Ho_Chi_Minh')->startOfWeek();
-    $today2 = $today1->copy()->endOfWeek();
-    $nextWeek = [];
-
-    for ($i = 0; $i <= 8; $i++) {
-      $nextWeek[] = $today1->toDateString() . ' đến ' . $today2->toDateString();
-      $today1->addDays(7);
-      $today2->addDays(7);
-    }
-
+  
 
 
 

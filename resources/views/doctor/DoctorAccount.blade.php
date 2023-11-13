@@ -25,7 +25,7 @@
                 class="flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-14 bg-blue-800  border-none">
                 <img class="w-7 h-7 md:w-10 md:h-10 mr-2 rounded-md overflow-hidden"
                     src="https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar.jpg" />
-                <span class="hidden md:block">ADMIN</span>
+                <span class="hidden md:block">{{ $user->name }}</span>
             </div>
             <div class="flex justify-between items-center h-14 ">
                 <div
@@ -57,9 +57,12 @@
                         </A>
                     </li>
                     <li>
-                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="flex items-center mx-2 hover:text-blue-100">
+                        <a href="#"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            class="flex items-center mx-2 hover:text-blue-100">
                             <span class="inline-flex mr-1">
-                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013 3h4a3 3 0 013 3v1">
                                     </path>
@@ -67,11 +70,11 @@
                             </span>
                             Logout
                         </a>
-                        
+
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                        
+
                     </li>
                 </ul>
             </div>
@@ -199,8 +202,10 @@
                     </div>
 
                     <!-- Khung thông tin thêm bác sĩ (ẩn mặc định) -->
-                    <div id="addDoctorForm" class="hidden fixed inset-0 ml-[450px] items-center justify-center z-10 overflow-y-auto">
-                        <div class="bg-blue-500 p-4 rounded-lg shadow-lg max-w-screen-md w-full" style="z-index: 9999;">
+                    <div id="addDoctorForm"
+                        class="hidden fixed inset-0 ml-[450px] items-center justify-center z-10 overflow-y-auto">
+                        <div class="bg-blue-500 p-4 rounded-lg shadow-lg max-w-screen-md w-full"
+                            style="z-index: 9999;">
                             <div class="max-h-screen-md overflow-y-auto">
                                 <h1> Thêm bác sĩ</h1>
                                 <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="/DoctorAccount"
@@ -220,7 +225,7 @@
                                         </label>
                                         <input
                                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                            id="password" name='password' type="text"
+                                            id="password" name='password' type="password"
                                             placeholder="Nhập mật khẩu">
                                     </div>
                                     <div class="mb-4">
@@ -233,13 +238,13 @@
                                             placeholder="Nhập tên bác sĩ">
                                     </div>
                                     <div class="mb-4">
-                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="sex">
-                                           Giới tính
-                                        </label>
-                                        <input
-                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                            id="sex" name='sex' type="text"
-                                            placeholder="Nhập giới tính">
+                                        
+                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="sex">Giới tính</label>
+                                        <select class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none focus:shadow-outline" id="sex" name="sex">
+                                            <option value="nam">Nam</option>
+                                            <option value="nu">Nữ</option>
+                                            <option value="khac">Khác</option>
+                                        </select>
                                     </div>
                                     <div class="mb-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2" for="specialty">
@@ -249,8 +254,9 @@
                                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                             id="specialty" name="specialty">
                                             <option value="">Chọn chuyên ngành</option>
-                                            @foreach($specialty as $specialties)
-                                                <option value="{{ $specialties->name }}">{{ $specialties->name }}</option>
+                                            @foreach ($specialty as $specialties)
+                                                <option value="{{ $specialties->name }}">{{ $specialties->name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -318,24 +324,62 @@
 
                     <div class="flex flex-wrap -m-4">
                         <!-- Thông tin của Bác sĩ 1 -->
-                        @foreach ($doctors as $doctor)
-                            <div class="w-1/2 p-4">
-                                <div class="bg-white shadow-md rounded-lg p-4">
-                                    <h2 class="text-xl font-semibold mt-2">{{ $doctor['full_name'] }}</h2>
-                                    <p class="text-gray-600">Chuyên ngành: {{ $doctor['id_specialty'] }}</p>
-                                    <p class="text-gray-600">Kinh nghiệm: {{ $doctor['Qualifications'] }} năm</p>
-                                    <form action="{{ route('delete-doctor', $doctor->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                            
-                                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                                            Xóa
-                                        </button>
-                                    </form>
+                        <div class="flex flex-col">
+                            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                                    <div class="overflow-hidden">
+                                        <table class="min-w-full text-left text-sm font-light">
+                                            <thead class="border-b font-medium dark:border-neutral-500">
+                                                <tr>
+                                                    <th scope="col" class="px-6 py-4">#</th>
+                                                    <th scope="col" class="px-6 py-4">Họ và tên</th>
+                                                    <th scope="col" class="px-6 py-4">Giới tính</th>
+                                                    <th scope="col" class="px-6 py-4">Chuyên ngành</th>
+                                                    <th scope="col" class="px-6 py-4">Kinh nghiệm (năm)</th>
+                                                    <th scope="col" class="px-6 py-4">Địa chỉ</th>
+                                                    <th scope="col" class="px-6 py-4">Thực hiện</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($doctors as $id => $doctor)
+                                                    <tr
+                                                        class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
+                                                        <td class="whitespace-nowrap px-6 py-4 font-medium">  {{ $id+1 }}</td>
+                                                        <td class="whitespace-nowrap px-6 py-4">
+                                                            {{ $doctor['full_name'] }}</td>
+                                                            <td class="whitespace-nowrap px-6 py-4">
+                                                                {{ $doctor['sex'] }}</td>
+                                                        <td class="whitespace-nowrap px-6 py-4">
+                                                            {{ $doctor['specialty'] }}</td>
+                                                        <td class="whitespace-nowrap px-6 py-4">
+                                                            {{ $doctor['Qualifications'] }}</td>
+                                                            <td class="whitespace-nowrap px-6 py-4">
+                                                                {{ $doctor['address'] }}</td>
+                                                        @if ($doctor['full_name'] != 'admin')
+                                                            <td class="whitespace-nowrap px-6 py-4">
+                                                                <form
+                                                                    action="{{ route('delete-doctor', $doctor['id']) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit"
+                                                                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                                                        Xóa
+                                                                    </button>
+                                                                </form>
+                                                            </td>
+                                                        @endif
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        @endforeach
-                        
+                        </div>
+
+
+
 
                         <!-- Thông tin của Bác sĩ 2 -->
 

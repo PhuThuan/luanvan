@@ -17,13 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('password');
-            $table->string('id_permisstion')->defaultValue('0');
-            $table->string('role')->defaultValue('0');
-            $table->timestamps('last_accessed');
+            $table->string('id_permisstion')->default('0');
+            $table->string('role')->default('0');
+            $table->timestamp('last_accessed')->default(now()); // Assuming you want the current timestamp as the default
             $table->rememberToken();
             $table->timestamps();
         });
+        
     }
 
     /**

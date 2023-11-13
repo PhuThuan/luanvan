@@ -25,7 +25,7 @@ class User extends Authenticatable
         'role',
         'last_accessed',
     ];
-
+    protected $dates = ['last_accessed'];
     /**
      * The attributes that should be hidden for serialization.
      *

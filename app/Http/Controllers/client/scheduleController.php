@@ -12,7 +12,7 @@ class scheduleController extends Controller
     //
     public function index()
     {
-        $hospitals = hospitalModel::get();
+        $hospitals = hospitalModel::where('status',1)->get();
 
         foreach ($hospitals as $hospital) {
             $address = AddressModel::where('id', $hospital['id_address'])->first();
@@ -23,7 +23,9 @@ class scheduleController extends Controller
             // Gán chuỗi mới vào trường id_address của bệnh viện
             $hospital['id_address'] = $newAddress;
         }
-       
+        if (request()->wantsJson()) {
+            return response()->json($hospitals);
+        }
        
         return view('client/schedule', ['hospitals' => $hospitals]);
     }

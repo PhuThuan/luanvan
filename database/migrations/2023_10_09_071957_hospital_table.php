@@ -16,6 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string('id_address');
             $table->string('name');
+            $table->string('logo');
+            $table->text('introduce');
             $table->string('hospital_type');
             $table->string('status');
             $table->string('slug');

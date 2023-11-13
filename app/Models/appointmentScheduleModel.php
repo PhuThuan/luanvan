@@ -12,7 +12,16 @@ class appointmentScheduleModel extends Model
     protected $table = 'appointmentschedule';
     protected $fillable = [
         'id_patient_records',
-        'id_work_schedule',
+        'name',
+        'age',
+        'gender',
+        'doctor',
+        'specialty',
+        'address',
+        'hospital',
+        'start_time',
+        'end_time',
+        'day',
         'status',
     ];
 }

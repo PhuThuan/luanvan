@@ -1,11 +1,11 @@
-<!DOCTYPE ht pl>
-<ht pl lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Admin</title>
+        <title>Easy</title>
 
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -18,7 +18,7 @@
                     <a href="{{ url('/') }}">
                         <h1
                             class="text-right text-black font-semibold  text-black hover:text-slate-900 dark:text-slate-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                            MEDPRO
+                            Easy
                         </h1>
                     </a>
                 </div>
@@ -34,41 +34,48 @@
                 <div class="relative group w-48 p-6">
                     <div class="text-white py-2 px-4 cursor-pointer ">
                         <a href="{{ route('instruct') }}">
-                            <h1 class="text-black text-lg " >Hướng dẫn</h1>
+                            <h1 class="text-black text-lg ">Hướng dẫn</h1>
                         </a>
                         <ul class="hidden absolute text-white group-hover:block top-full left-0   bg-zinc-50 ">
-                            <li><a href="#" class="block py-2 px-4">
+                            <li> <a href="{{ route('instruct') }}" class="block py-2 px-4">
                                     <h1 class="text-black text-lg">Đặt lịch khám</h1>
                                 </a></li>
-                            <li><a href="#" class="block py-2 px-4">
+                            <li> <a href="{{ route('refundprocess') }}"class="block py-2 px-4">
                                     <h1 class="text-black text-lg">Quy trình hoàn phí</h1>
                                 </a></li>
-                            <li><a href="#" class="block py-2 px-4">
+                            <li><a href="{{ route('frequentlyaskedquestions') }}" class="block py-2 px-4">
                                     <h1 class="text-black text-lg">Câu hỏi thường gặp</h1>
                                 </a></li>
                         </ul>
                     </div>
                 </div>
-
+    
                 <div class="relative group w-40 p-6">
                     <div class="text-white py-2 px-4 cursor-pointer">
-                        <h1 class=" text-black text-lg">Tin tức</h1>
+                        <a href="{{ route('servicenews') }}">
+                            <h1 class=" text-black text-lg">Tin tức</h1>
+                        </a>
                     </div>
                     <ul class="hidden absolute text-white group-hover:block  bg-zinc-50 ">
-                        <li><a href="#" class="block py-2 px-4">
+                        <li>
+                            <a href="{{ route('servicenews') }}" class="block py-2 px-4">
                                 <h1 class=" text-black text-lg">Tin dịch vụ</h1>
-                            </a></li>
-                        <li><a href="#" class="block py-2 px-4">
+                            </a>
+    
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('service') }}" class="block py-2 px-4">
                                 <h1 class=" text-black text-lg">Tin y tế</h1>
-                            </a></li>
-                        <li><a href="#" class="block py-2 px-4">
-                                <h1 class=" text-black text-lg">Y học thường thức</h1>
-                            </a></li>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="relative group w-48 p-6">
                     <div class="text-white py-2 px-4 cursor-pointer ">
+                        <a href="{{ route('aboutus') }}">
                         <h1 class=" text-black text-lg">Về chúng tôi</h1>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -90,13 +97,13 @@
                 <div class="relative group w-48 p-4">
                     <div
                         class="font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                        <h1 class=" text-black text-xl">Hỗ trợ đặt khám 0123456789</h1>
+                        <h1 class=" text-black">Hỗ trợ đặt khám 0123456789</h1>
                     </div>
                 </div>
             </div>
         </header>
 
-        <div class="   pl-[13%] border border-gray-200 bg-blue-50 mt-[1%]">
+        <div class="   pl-[13%] border border-gray-200 bg-blue-50 ">
             <div class="text-left  pl-[2%]">
                 <h1 class=" font-bold mb-4"><a href="{{ url('/') }}">Trang chủ </a> &#62; <a>Cơ sở y tế</a></h1>
             </div>
@@ -109,13 +116,13 @@
                     tốt hơn</p>
             </div>
 
-            <div class="mb-4    pl-[13%] ">
+            <div class="mb-4    ml-[10%] w-[80%]">
                 <label for="ten_benh_vien" class="block text-gray-700 text-sm font-bold mb-2">Tên Bệnh viện:</label>
                 <input type="text" id="ten_benh_vien" name="ten_benh_vien" required
                     class="w-full border border-gray-300 rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
-            <div class="mb-4    pl-[13%]">
+            <div class="mb-4    ml-[10%] w-[80%]">
                 <label for="tinh_thanh" class="block text-gray-700 text-sm font-bold mb-2">Tỉnh/Thành phố:</label>
                 <!-- Dropdown cho tỉnh/thành phố -->
                 <select id="city" name="province"
@@ -125,31 +132,31 @@
             </div>
 
 
-            <div class="mt-6    pl-[13%]">
+            <div class="mt-6   pl-[10%] w-[80%]">
 
                 <div id="items">
-                    <ul class="space-y-2 h-[500px]">
-
+                    <ul class="space-y-2 h-[700px]">
                         @foreach ($hospitals as $hospital)
-                            <li class="p-4 border border-gray-200 w-[70%]  pl-[20%] ">
-                                <div class="grid grid-cols-4 gap-4">
-                                    <div class="col-span-3">
-                                        <h1 class="text-xl font-semibold">{{ $hospital->name }}</h1>
-                                        <p class="text-gray-600">{{ $hospital->id_address }}</p>
-                                    </div>
-                                    <div class='mt-[10%] '>
-                                        <a href="{{ route('formOfChoiceedule', ['slug' => $hospital->slug]) }}"
-                                            class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 mt-2">
-                                            Đặt khám
-                                        </a>
-                                    </div>
+                        <li class="p-4 border border-gray-200 w-[70%] pl-[10%]" onclick="showDetails({{$hospital->id -1 }})">
+                            <div class="flex">
+                                <div class="w-1/5 mt-[5%]">
+                                    <img src="{{ asset($hospital['logo']) }}" alt="Logo Bệnh Viện" class="w-10 h-10">
                                 </div>
-                            </li>
+                                <div class="w-3/5">
+                                    <h1 class="text-xl font-semibold">{{ $hospital->name }}</h1>
+                                    <p class="text-gray-600">{{ $hospital->id_address }}</p>
+                                </div>
+                                <div class='w-1/5 mt-[5%]'>
+                                    <a href="{{ route('formOfChoiceedule', ['slug' => $hospital->slug]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 mt-2">
+                                        Đặt khám
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
                         @endforeach
-
-
-                    </ul>
+                    </ul>                    
                 </div>
+              
                 <div id="pagination" class="mt-4">
                     <button id="prev" class="px-4 py-2 bg-blue-500 text-white rounded-md " disabled>Quay
                         lại</button>
@@ -321,8 +328,31 @@
 
 
             }
+            function showDetails(id) {
+    // Sử dụng AJAX để gửi yêu cầu GET đến route '/admin/patient-information'
+    $.ajax({
+        url: '/co-so-y-te',
+        method: 'GET',
+        dataType: 'json',
+        data: { id: id }, // Gửi id như một tham số
+        success: function (data) {
+            // Xử lý dữ liệu nhận được từ server
+            console.log('Data received from the server:');
+            console.log(data[id]);
+
+            var details = "Tên: " + data[id].name  + "<br>Ngày sinh: " + data[id].date_of_birth + "<br>Số điện thoại: " + data[id].phone + "<br>Giới tính: " + data[id].gender + "<br>Công việc: " + data[id].job + "<br>CCCD: " + data[id].CCCD + "<br>Email: " + data[id].email;
+            document.getElementById('patientDetails').innerHTML = details;
+
+            // Hiển thị modal
+            document.getElementById('patientModal').style.display = 'block';
+        },
+        error: function (error) {
+            console.error('Error:', error);
+        }
+    });
+}
         </script>
 
     </body>
 
-</ht pl>
+</html>

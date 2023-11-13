@@ -5,24 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Easy</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+   
 
     <!-- Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="bg-gray-200">
     <header id="body-header" class="grid grid-cols-3 gap-3 text-black bg-zinc-50 ">
         <div class="relative group w-40 p-6 text-3xl">
             <div class="text-white py-2 px-4 cursor-pointer">
                 <a href="{{ url('/') }}">
                     <h1
                         class="text-right text-black font-semibold  text-black hover:text-slate-900 dark:text-slate-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                        MEDPRO
+                        Easy
                     </h1>
                 </a>
             </div>
@@ -38,16 +37,16 @@
             <div class="relative group w-48 p-6">
                 <div class="text-white py-2 px-4 cursor-pointer ">
                     <a href="{{ route('instruct') }}">
-                        <h1 class="text-black text-lg " >Hướng dẫn</h1>
+                        <h1 class="text-black text-lg ">Hướng dẫn</h1>
                     </a>
                     <ul class="hidden absolute text-white group-hover:block top-full left-0   bg-zinc-50 ">
-                        <li><a href="#" class="block py-2 px-4">
+                        <li> <a href="{{ route('instruct') }}" class="block py-2 px-4">
                                 <h1 class="text-black text-lg">Đặt lịch khám</h1>
                             </a></li>
-                        <li><a href="#" class="block py-2 px-4">
+                        <li> <a href="{{ route('refundprocess') }}"class="block py-2 px-4">
                                 <h1 class="text-black text-lg">Quy trình hoàn phí</h1>
                             </a></li>
-                        <li><a href="#" class="block py-2 px-4">
+                        <li><a href="{{ route('frequentlyaskedquestions') }}" class="block py-2 px-4">
                                 <h1 class="text-black text-lg">Câu hỏi thường gặp</h1>
                             </a></li>
                     </ul>
@@ -56,23 +55,30 @@
 
             <div class="relative group w-40 p-6">
                 <div class="text-white py-2 px-4 cursor-pointer">
-                    <h1 class=" text-black text-lg">Tin tức</h1>
+                    <a href="{{ route('servicenews') }}">
+                        <h1 class=" text-black text-lg">Tin tức</h1>
+                    </a>
                 </div>
                 <ul class="hidden absolute text-white group-hover:block  bg-zinc-50 ">
-                    <li><a href="#" class="block py-2 px-4">
+                    <li>
+                        <a href="{{ route('servicenews') }}" class="block py-2 px-4">
                             <h1 class=" text-black text-lg">Tin dịch vụ</h1>
-                        </a></li>
-                    <li><a href="#" class="block py-2 px-4">
+                        </a>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('service') }}" class="block py-2 px-4">
                             <h1 class=" text-black text-lg">Tin y tế</h1>
-                        </a></li>
-                    <li><a href="#" class="block py-2 px-4">
-                            <h1 class=" text-black text-lg">Y học thường thức</h1>
-                        </a></li>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="relative group w-48 p-6">
                 <div class="text-white py-2 px-4 cursor-pointer ">
+                    <a href="{{ route('aboutus') }}">
                     <h1 class=" text-black text-lg">Về chúng tôi</h1>
+                    </a>
                 </div>
             </div>
         </div>
@@ -99,37 +105,53 @@
             </div>
         </div>
     </header>
-    <div class="container mx-auto mt-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="container mx-auto mt-4 mb-[190px]">
+        <h1 class=" font-bold mb-4"><a href="{{ url('/') }}">Trang chủ </a> &#62;
+            <a>{{ $hospital['name'] }} </a> &#62; <a>
+                <a> Chọn bác sĩ </a>
+
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ">
             <!-- Left Section for Information -->
-            <div class="bg-white p-4 shadow-md">
-                <h5 class="text-lg font-semibold">Thông tin</h5>
-                <p class="text-gray-700">{{ $hospital->name }}</p>
+            <div class=" p-4 w-[40%] ml-[50%] h-auto border ">
+                <h5 class="text-lg text-center font-semibold bg-blue-200 mb-[3%] ">Thông tin</h5>
+                <p class="text-gray-700 bg-white">Phòng khám: {{ $hospital->name }}</p>
+                <p class="text-gray-700 bg-white">Địa chỉ: {{ $address}}</p>
             </div>
 
             <!-- Right Section for Doctors -->
-            <div class="bg-white p-4 shadow-md">
-                <h5 class="text-lg font-semibold">Các Bác Sĩ</h5>
-                <ul>
-                    @foreach ($doctors as $doctor)
-                        <li class="text-sm mb-2">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 bg-blue-500 rounded-full flex-shrink-0"></div>
-                                <div class="ml-3">
-                                    <h6 class="font-semibold">{{ $doctor['full_name'] }}</h6>
-                                    <p class="text-gray-600">{{ $doctor['Qualifications'] }}</p>
-                                    <p class="text-gray-600">{{ $doctor['specialty'] }}</p>
-                                </div>
+            <div class="p-4 w-full border h-[500px] overflow-y-auto bg-white">
+                <h5 class="text-lg text-center font-semibold bg-blue-200 mb-[3%]">Vui lòng chọn bác sĩ</h5>
+            
+                @foreach ($doctors as $doctor)
+                    <div class="flex items-center border border-gray-200 ml-[50]">
+                        <a href="{{ route('formOfChoiceeduleByDoctorBooking', ['slug' => $slug, 'booking' => $doctor['id']]) }}" class="text-sm mb-2 border border-red-200 w-full">
+                            <div class="ml-3">
+                                <h6 class="font-semibold text-blue-600">Bác Sĩ: {{ $doctor['full_name'] }}</h6>
+                                <h6 class="text-gray-600">Giới tính: {{ $doctor['sex'] }}</h6>
+                                <p class="text-gray-600">Kinh nghiệm: {{ $doctor['Qualifications'] }}</p>
+                                <p class="text-gray-600">Chuyên ngành: {{ $doctor['specialty'] }}</p>
                             </div>
-                            <a href="{{ route('formOfChoiceeduleByDoctorBooking', ['slug' => $slug, 'booking' => $doctor['id']]) }}"
-                                class="text-blue-500 hover:underline">Chọn</a>
-                        </li>
-                    @endforeach
-                </ul>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+            
+        </div>
+        <a href="{{route('Schedule')}} " class="ml-[25%] ">Quay lại</a>
+    </div> 
+     
+    <footer class="bg-gray-800 text-white py-4 mb-[25%]">
+        <div class="container mx-auto flex items-center justify-between">
+            <div>
+                <p>&copy; 2023 Your Company. All rights reserved.</p>
+            </div>
+            <div>
+                <a href="#" class="text-gray-300 hover:text-white px-2">Privacy Policy</a>
+                <a href="#" class="text-gray-300 hover:text-white px-2">Terms of Service</a>
             </div>
         </div>
-    </div>
-    </div>
+    </footer>
 </body>
 
 </html>

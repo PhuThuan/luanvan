@@ -42,17 +42,51 @@ class PatientRecordController extends Controller
         }
     }
     //
-  
+
     public function create()
     {
+
+
         return view('client/patientrecords');
+    }
+    public function update($id)
+    {
+
+        $patientRecords = [];
+
+        if ($id != null) {
+            $patientRecord = patientRecordsModel::find($id);
+
+            if ($patientRecord) {
+                $address = AddressModel::find($patientRecord['id_address']);
+
+                $patientRecords = [
+                    "id" => $patientRecord['id'],
+                    "name" => $patientRecord['name'],
+                    "date_of_birth" => $patientRecord['date_of_birth'],
+                    "phone" => $patientRecord['phone'],
+                    "gender" => $patientRecord['gender'],
+                    "job" => $patientRecord['job'],
+                    "CCCD" => $patientRecord['CCCD'],
+                    "email" => $patientRecord['email'],
+                    "ethnic" => $patientRecord['ethnic'],
+                    'province' => $address['province'],
+                    'district' => $address['district'],
+                    'commune' => $address['commune'],
+                    'street_address' => $address['street_address'],
+                ];
+            }
+        }
+
+
+        return view('client/patientrecords', ['patientRecords' => $patientRecords]);
     }
     public function stores(Request $request)
     {
-              $address = $request->only('province', 'district', 'ward', 'street_address');
+        $address = $request->only('province', 'district', 'ward', 'street_address');
 
         $id_address =   $this->checkAddress($address['province'], $address['district'], $address['ward'], $address['street_address'],);
-        $a=patientRecordsModel::create(
+        $a = patientRecordsModel::create(
             [
                 'id_user' => Auth::id(),
                 'id_address' => $id_address['id'],
@@ -64,9 +98,34 @@ class PatientRecordController extends Controller
                 'CCCD' => $request->input('id_number'),
                 'email' => $request->input('email'),
                 'ethnic' => $request->input('ethnicity'),
-                'status'=>1,
+                'status' => 1,
             ],
         );
-      return redirect()->back();
+        return redirect()->back();
+    }
+    public function updateid($id, Request $request)
+    {
+        $patientRecords = [];
+
+        $patientRecord = patientRecordsModel::find($id);
+
+        $address = $request->only('province', 'district', 'ward', 'street_address');
+
+        $id_address =   $this->checkAddress($address['province'], $address['district'], $address['ward'], $address['street_address'],);
+
+
+        $tempt = [
+            "name" => $request->input('full_name'),
+            "date_of_birth" => $request->input('dob'),
+            "phone" => $request->input('phone'),
+            "gender" => $request->input('gender'),
+            "job" => $request->input('occupation'),
+            "CCCD" => $request->input('id_number'),
+            "email" => $request->input('email'),
+            "ethnic" => $request->input('ethnicity'),
+            'id_address' => $id_address['id'],
+
+        ];
+        return redirect()->back();
     }
 }

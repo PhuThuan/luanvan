@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('sdt');
-            $table->string('note');
+            $table->text('note');
+            $table->integer('status');
             $table->timestamps();
         });
     }

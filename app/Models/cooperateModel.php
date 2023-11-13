@@ -14,5 +14,6 @@ class cooperateModel extends Model
         'email',
         'sdt',
         'note',
+        'status'
     ];
 }

@@ -21,46 +21,24 @@ class medicalBillController extends Controller
     {
         $user = Auth::user();
 
-        $patients = patientRecordsModel::where('id_user', $user['id'])->get();
-
-        $tempt = [];
-
+        $patients = patientRecordsModel::where('id_user', $user->id)->get();
+        
+        $phieukhambenh = null;
+        
         foreach ($patients as $patient) {
-
-            $appointments = appointmentScheduleModel::where('id_patient_records', $patient['id'])->where('id', $id)->get();
-            $tempt = array_merge($tempt, $appointments->toArray());
-        }
-        if ($tempt == null) {
-            return to_route('error');
-        }
-       foreach ($tempt as $tempts){
-        $a=$tempts['id'];
-        $pr =   patientRecordsModel::where('id_user', $user['id'])->where('id', $tempts['id_patient_records'])->first();
-        $sch =    ScheduleModel::where('id', $tempts['id_work_schedule'])->first();
-       }
-      
-       $doctor=DoctorModel::find($sch['id_doctor']);
-
-     $Specialty=  SpecialtyModel::find($doctor['id_specialty']);
+            $appointment = appointmentScheduleModel::where('id_patient_records', $patient->id)
+                ->where('id', $id)
+                ->latest()
+                ->first();
+        
+            if ($appointment) {
+                $phieukhambenh = $appointment;
+                break; // Dừng vòng lặp sau khi tìm thấy bản ghi phieukhambenh
+            }
+        }    
+        
      
-     $hospital=hospitalModel::find($Specialty['id_hospital']);
-     $address=AddressModel::find($pr['id_address']);
-   
-     $nameAddress= $address['province'].' '. $address['district'].' '. $address['commune'];
-       $time=WorkkingtimeModel::find( $sch['id_working_time']);
-       $phieukhambenh = [
-        'id'=>$a,
-        'name' => $pr['name'],
-        'age' => $pr['date_of_birth'],
-        'gender' => $pr['gender'],
-        'doctor' =>  $doctor['full_name'],
-        'specialty'=> $Specialty['name'],
-        'hospital' =>  $hospital['name'],
-        'address'=> $nameAddress,
-        'time'=>$time['start_time'].' -> '.$time['end_time'],
-        'day'=>$time['day'],
-    ];
-      //  dd($pr,  $sch, $phieukhambenh);
-        return view('client.phieukham', ['phieukhambenh'=>$phieukhambenh]);
+        return view('client.phieukham', ['phieukhambenh' => $phieukhambenh]);
+        
     }
 }
