@@ -15,12 +15,16 @@ class AdminpatientInformationController extends Controller
     {
         $patients = patientRecordsModel::orderBy('created_at', 'desc')->get();
         foreach ($patients as $id => $patient) {
-            $patient['id'] = $id;
+          
             $address =   AddressModel::find($patient['id_address']);
+            $app =   appointmentScheduleModel::where('id_patient_records',$patient['id'])->get();
+            $patient['id'] = $id;
+            $patient['app'] = count($app);
             $patient['province'] = $address['province'];
             $patient['district'] = $address['district'];
             $patient['commune'] = $address['commune'];
             $patient['street_address'] = $address['street_address'];
+            $patient['address'] = implode(', ', array_filter([$address['province'], $address['district'], $address['commune'], $address['street_address']]));
         }
         if (request()->wantsJson()) {
             return response()->json($patients);

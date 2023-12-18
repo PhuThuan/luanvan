@@ -52,18 +52,21 @@
 
             <div class="relative group w-40 p-6">
                 <div class="text-white py-2 px-4 cursor-pointer">
-                    <h1 class=" text-black text-lg">Tin tức</h1>
+                   
+                    <a href="{{ route('servicenews') }}">
+                        <h1 class=" text-black text-lg">Tin tức</h1>
+                    </a>
                 </div>
                 <ul class="hidden absolute text-white group-hover:block  bg-zinc-50 ">
-                    <li><a href="#" class="block py-2 px-4">
+                    <li><a href="{{ route('servicenews') }}" class="block py-2 px-4">
                             <h1 class=" text-black text-lg">Tin dịch vụ</h1>
-                        </a></li>
-                    <li><a href="#" class="block py-2 px-4">
+                        </a>
+                    </li>
+                    <li><a href="{{ route('service') }}" class="block py-2 px-4">
                             <h1 class=" text-black text-lg">Tin y tế</h1>
-                        </a></li>
-                    <li><a href="#" class="block py-2 px-4">
-                            <h1 class=" text-black text-lg">Y học thường thức</h1>
-                        </a></li>
+                        </a>
+                    </li>
+                    
                 </ul>
             </div>
             <div class="relative group w-48 p-6">
@@ -120,7 +123,7 @@
             <div class="col-span-2">
                 <p class="text-lg text-gray-700">
                     Easy cung cấp dịch vụ đặt khám nhanh, lấy số thứ tự trực tuyến và tư vấn sức khỏe từ xa tại các Cơ
-                    sở Y tế hàng đầu Việt Nam như Bệnh viện Đại học Y Dược TP.HCM, Bệnh viện Chợ Rẫy và Bệnh viện Nhi
+                    sở Y tế hàng đầu Việt Nam như phòng khám Đại học Y Dược TP.HCM, phòng khám Chợ Rẫy và phòng khám Nhi
                     Đồng...
                 </p>
             </div>
@@ -158,7 +161,7 @@
                         Cơ sở Y tế rộng khắp
                     </h5>
                     <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                        Mạng lưới bệnh viện, phòng khám, phòng mạch phủ khắp toàn quốc
+                        Mạng lưới  phòng khám, phòng mạch phủ khắp toàn quốc
                     </p>
                     <button type="button"
                         class="px-6 py-2 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('cost', function (Blueprint $table) {
             $table->id();
             $table->date('day');
-            $table->integer('cost');//luot truy cap
-         $table->integer('id_hospital');
+            $table->integer('cost'); //luot truy cap
+            $table->integer('id_hospital');
             $table->timestamps();
         });
     }

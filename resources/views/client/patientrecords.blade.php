@@ -75,7 +75,7 @@
             <div class="relative group w-48 p-6">
                 <div class="text-white py-2 px-4 cursor-pointer ">
                     <a href="{{ route('aboutus') }}">
-                    <h1 class=" text-black text-lg">Về chúng tôi</h1>
+                        <h1 class=" text-black text-lg">Về chúng tôi</h1>
                     </a>
                 </div>
             </div>
@@ -121,74 +121,87 @@
         </div>
 
         <p class="text-lg text-red-500">(*) Thông tin bắt buộc nhập</p>
-        <form class="mt-6 grid grid-cols-2 gap-4" 
-        
-        @if (isset($patientRecords)) 
-        action="{{ route('patientrecordsupdateid',['id'=>$patientRecords['id']]) }}"
+        <form class="mt-6 grid grid-cols-2 gap-4"
+            @if (isset($patientRecords)) action="{{ route('patientrecordsupdateid', ['id' => $patientRecords['id']]) }}"
         @else
-        action="{{ route('patientrecords1') }}"
-        @endif
-        
-      
-
-
-         method="POST">
+        action="{{ route('patientrecords1') }}" @endif
+            method="POST">
             @csrf
             <!-- First Column -->
             <div>
                 <div class="mb-4">
                     <label for="full_name" class="block text-gray-700 text-sm font-bold mb-2">Họ và tên<span
                             class="text-red-500"><span class="text-red-500">*</span></span></label>
-                    <input type="text" id="full_name" name="full_name" placeholder="Nhập họ và tên" required
+                    <input type="text" id="full_name" name="full_name" placeholder="Nhập họ và tên"  
                         @if (isset($patientRecords)) value="{{ $patientRecords['name'] }}" @endif
                         class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none focus:shadow-outline">
+                    @error('full_name')
+                        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
                     <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Số điện thoại<span
                             class="text-red-500">*</span></label>
-                    <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại" required
+                    <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại"  
                         @if (isset($patientRecords)) value="{{ $patientRecords['phone'] }}" @endif
                         class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none focus:shadow-outline">
+                    @error('phone')
+                        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
                     <label for="occupation" class="block text-gray-700 text-sm font-bold mb-2">Nghề nghiệp<span
                             class="text-red-500">*</span></label>
-                    <input type="text" id="occupation" name="occupation" placeholder="Nhập nghề nghiệp" required
-                    @if (isset($patientRecords)) value="{{ $patientRecords['job'] }}" @endif
+                    <input type="text" id="occupation" name="occupation" placeholder="Nhập nghề nghiệp"  
+                        @if (isset($patientRecords)) value="{{ $patientRecords['job'] }}" @endif
                         class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none focus:shadow-outline">
+                    @error('occupation')
+                        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Địa chỉ Email<span
                             class="text-red-500">*</span></label>
-                    <input type="text" id="email" name="email" placeholder="Nhập địa chỉ Email" required
-                    @if (isset($patientRecords)) value="{{ $patientRecords['email'] }}" @endif
+                    <input type="text" id="email" name="email" placeholder="Nhập địa chỉ Email"  
+                        @if (isset($patientRecords)) value="{{ $patientRecords['email'] }}" @endif
                         class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none focus:shadow-outline">
+                    @error('email')
+                        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label for="province" class="block text-gray-700 text-sm font-bold mb-2">Tỉnh/Thành phố</label>
-                    <select id="city" name="province" 
+                    <select id="city" name="province"
                         class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none focus:shadow-outline">
-                     @if (isset($patientRecords))
-                     <option value="{{$patientRecords['province']}}" selected>{{$patientRecords['province']}}</option>
-                     @else
-                     <option value="" selected>Chọn tỉnh/thành phố</option>
-                     @endif
+                        @if (isset($patientRecords))
+                            <option value="{{ $patientRecords['province'] }}" selected>
+                                {{ $patientRecords['province'] }}</option>
+                        @else
+                            <option value="" selected>Chọn tỉnh/thành phố</option>
+                        @endif
 
                     </select>
+                    @error('province')
+                        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label for="ward" class="block text-gray-700 text-sm font-bold mb-2">Phường/Xã</label>
-                    <select id="ward" name="ward" 
+                    <select id="ward" name="ward"
                         class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none focus:shadow-outline">
                         @if (isset($patientRecords))
-                        <option value="{{$patientRecords['commune']}}" selected>{{$patientRecords['commune']}}</option>
+                            <option value="{{ $patientRecords['commune'] }}" selected>
+                                {{ $patientRecords['commune'] }}</option>
                         @else
-                        <option value="" selected>Chọn phường/xã</option>
+                            <option value="" selected>Chọn phường/xã</option>
                         @endif
-                       
+
                     </select>
+                    @error('ward')
+                        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
             <!-- Second Column -->
@@ -196,44 +209,58 @@
                 <div class="mb-4">
                     <label for="dob" class="block text-gray-700 text-sm font-bold mb-2">Ngày tháng năm sinh<span
                             class="text-red-500">*</span></label>
-                    <input type="date" id="dob" name="dob" placeholder="Nhập ngày tháng năm sinh"  
-                    @if (isset($patientRecords)) value="{{ $patientRecords['date_of_birth'] }}" @endif
-                        required
+                    <input type="date" id="dob" name="dob" placeholder="Nhập ngày tháng năm sinh"
+                        @if (isset($patientRecords)) value="{{ $patientRecords['date_of_birth'] }}" @endif
+                         
                         class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none focus:shadow-outline">
+                    @error('dob')
+                        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label for="gender" class="block text-gray-700 text-sm font-bold mb-2">Giới tính<span
                             class="text-red-500">*</span></label>
-                    <input type="text" id="gender" name="gender" placeholder="Nhập giới tính" required
-                    @if (isset($patientRecords)) value="{{ $patientRecords['gender'] }}" @endif
+                    <input type="text" id="gender" name="gender" placeholder="Nhập giới tính"  
+                        @if (isset($patientRecords)) value="{{ $patientRecords['gender'] }}" @endif
                         class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none focus:shadow-outline">
+                    @error('gender')
+                        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label for="id_number" class="block text-gray-700 text-sm font-bold mb-2">Số CMND/Passport<span
                             class="text-red-500">*</span></label>
                     <input type="text" id="id_number" name="id_number" placeholder="Nhập số CMND/Passport"
-                        required
-                        @if (isset($patientRecords)) value="{{ $patientRecords['CCCD'] }}" @endif
+                          @if (isset($patientRecords)) value="{{ $patientRecords['CCCD'] }}" @endif
                         class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none focus:shadow-outline">
+                    @error('id_number')
+                        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label for="ethnicity" class="block text-gray-700 text-sm font-bold mb-2">Dân tộc<span
                             class="text-red-500">*</span></label>
-                    <input type="text" id="ethnicity" name="ethnicity" placeholder="Nhập dân tộc" required
-                    @if (isset($patientRecords)) value="{{ $patientRecords['ethnic'] }}" @endif
+                    <input type="text" id="ethnicity" name="ethnicity" placeholder="Nhập dân tộc"  
+                        @if (isset($patientRecords)) value="{{ $patientRecords['ethnic'] }}" @endif
                         class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none focus:shadow-outline">
+                    @error('ethnicity')
+                        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
                     <label for="district" class="block text-gray-700 text-sm font-bold mb-2">Quận/Huyện</label>
-                    <select id="district" name="district" 
+                    <select id="district" name="district"
                         class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none focus:shadow-outline">
                         @if (isset($patientRecords))
-                        <option value="{{$patientRecords['district']}}" selected>{{$patientRecords['district']}}</option>
+                            <option value="{{ $patientRecords['district'] }}" selected>
+                                {{ $patientRecords['district'] }}</option>
                         @else
-                        <option value="" selected>Chọn quận/huyện</option>
+                            <option value="" selected>Chọn quận/huyện</option>
                         @endif
-                      
+                        @error('district')
+                            <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                        @enderror
                     </select>
                 </div>
 
@@ -241,9 +268,12 @@
                     <label for="street_address" class="block text-gray-700 text-sm font-bold mb-2">Tên đường/Số
                         nhà</label>
                     <input type="text" id="street_address" name="street_address"
-                        placeholder="Nhập tên đường/số nhà" required
+                        placeholder="Nhập tên đường/số nhà"
                         @if (isset($patientRecords)) value="{{ $patientRecords['street_address'] }}" @endif
                         class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none focus:shadow-outline">
+                    @error('street_address')
+                        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-6">
                     <button

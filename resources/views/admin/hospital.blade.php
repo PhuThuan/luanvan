@@ -92,6 +92,8 @@
         </div>
         <!-- ./Header -->
 
+
+
         <!-- Sidebar -->
         <div
             class="fixed flex flex-col top-14 left-0 w-14 hover:w-64 md:w-64 bg-green-900  h-full text-white transition-all duration-300 border-none z-10 sidebar">
@@ -103,15 +105,15 @@
                         </div>
                     </li>
                     <!-- <li>
-                <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
-                  <span class="inline-flex justify-center items-center ml-4">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                  </span>
-                  <span class="ml-2 text-sm tracking-wide truncate">Trang chủ</span>
-                </a>
-              </li> -->
+            <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
+              <span class="inline-flex justify-center items-center ml-4">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+              </span>
+              <span class="ml-2 text-sm tracking-wide truncate">Trang chủ</span>
+            </a>
+          </li> -->
                     <li>
-                        <a href="{{route('adminSys')}}"
+                        <a href="{{ route('adminSys') }}"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <i class="fas fa-tag  w-5 h-5"></i>
@@ -176,21 +178,54 @@
                             <span class="ml-2 text-sm tracking-wide truncate">Thông tin bệnh nhân</span>
                         </a>
                     </li>
+                    <li>
+
+                        <a href="{{ route('adminappointment') }}"
+                            class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
+                            <span class="inline-flex justify-center items-center ml-4">
+                                <i class="fas fa-users  w-5 h-5"></i>
+                                <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg> -->
+                            </span>
+                            <span class="ml-2 text-sm tracking-wide truncate">Lượt khám</span>
+                        </a>
+                    </li>
+                    <li>
+
+                        <a href="{{ route('adminstatistics') }}"
+                            class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
+                            <span class="inline-flex justify-center items-center ml-4">
+                                <i class="fas fa-users  w-5 h-5"></i>
+                                <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg> -->
+                            </span>
+                            <span class="ml-2 text-sm tracking-wide truncate">Thống kê</span>
+                        </a>
+                    </li>
+                    <li>
+
+                        <a href="{{ route('adminuser') }}"
+                            class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
+                            <span class="inline-flex justify-center items-center ml-4">
+                                <i class="fas fa-users  w-5 h-5"></i>
+                                <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg> -->
+                            </span>
+                            <span class="ml-2 text-sm tracking-wide truncate">Tài khoản người dùng</span>
+                        </a>
+                    </li>
                     <li class="px-5 hidden md:block">
                         <div class="flex flex-row items-center mt-5 h-8">
                             <div class="text-sm font-light tracking-wide text-gray-400 uppercase">Settings</div>
                         </div>
                     </li>
                     <!-- <li>
-                <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800   text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500   pr-6">
-                  <span class="inline-flex justify-center items-center ml-4">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                  </span>
-                  <span class="ml-2 text-sm tracking-wide truncate">Profile</span>
-                </a>
-              </li>-->
+            <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800   text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500   pr-6">
+              <span class="inline-flex justify-center items-center ml-4">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+              </span>
+              <span class="ml-2 text-sm tracking-wide truncate">Profile</span>
+            </a>
+          </li>-->
                     <li>
-                        <a href="route('setting_premission')"
+                        <a href="{{ route('setting.index') }}"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800   text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500   pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -203,7 +238,24 @@
                                 </svg>
                             </span>
 
-                            <span class="ml-2 text-sm tracking-wide truncate">Permission</span>
+                            <span class="ml-2 text-sm tracking-wide truncate">Mail Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('adminpermissions') }}"
+                            class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-green-800   text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500   pr-6">
+                            <span class="inline-flex justify-center items-center ml-4">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </span>
+
+                            <span class="ml-2 text-sm tracking-wide truncate">Quyền truy cập</span>
                         </a>
                     </li>
                 </ul>
@@ -219,36 +271,28 @@
                     <!-- Nút "Thêm Bác sĩ" -->
                     <button id="addHospitalBtn"
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Thêm bệnh viện 
+                        Thêm phòng khám
                     </button>
                 </div>
-                <div id="addHospitalForm" class="hidden fixed inset-0 ml-[450px] items-center justify-center z-10 overflow-y-auto mt-[100px]">
+                <div id="addHospitalForm"
+                    class="hidden fixed inset-0 ml-[450px] items-center justify-center z-10 overflow-y-auto mt-[100px]">
                     <div class="bg-blue-500 p-4 rounded-lg shadow-lg max-w-screen-md w-full" style="z-index: 9999;">
                         <div class="max-h-screen-md overflow-y-auto">
-                            <h1> Thêm bệnh viện</h1>
-                            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{route('addhospital')}} " enctype="multipart/form-data"
-                                method="POST">
+                            <h1> Thêm phòng khám</h1>
+                            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+                                action="{{ route('addhospital') }} " enctype="multipart/form-data" method="POST">
                                 @csrf
                                 <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-                                       Bệnh viện
+                                        Phòng khám
                                     </label>
                                     <input
                                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                        id="hospital" name='name' type="text" placeholder="Nhập bệnh viện">
-                                </div>
-                                <div class="mb-4">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                                      Slug
-                                    </label>
-                                    <input
-                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                        id="slug" name='slug' type="text"
-                                        placeholder="Nhập slug">
+                                        id="hospital" name='name' type="text" placeholder="Nhập phòng khám">
                                 </div>
                                 <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" for="introduce">
-                                      Thông tin giới thiệu
+                                        Thông tin giới thiệu
                                     </label>
                                     <input
                                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -257,44 +301,39 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" for="image">
-                                     Logo Bệnh viện
+                                        Logo phòng khám
                                     </label>
                                     <input
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    id="image" name="image" type="file" accept="image/*" placeholder="Chọn hình ảnh">
-                                
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        id="image" name="image" type="file" accept="image/*"
+                                        placeholder="Chọn hình ảnh">
+
                                 </div>
                                 <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" for="user">
-                                      Tài khoản quản lý
+                                        Tài khoản quản lý
                                     </label>
                                     <input
                                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                        id="user" name='user' type="text" placeholder="Nhập tài khoản quản lý">
+                                        id="user" name='user' type="text"
+                                        placeholder="Nhập tài khoản quản lý">
                                 </div>
                                 <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                                     Mật khẩu quản lý
+                                        Mật khẩu quản lý
                                     </label>
                                     <input
                                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                        id="password" name='password' type="password" placeholder="Nhập bệnh viện">
+                                        id="password" name='password' type="password" placeholder="Nhập mật khẩu">
                                 </div>
                                 <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                                  Slug chuyên ngành
+                                        Chuyên ngành
                                     </label>
                                     <input
                                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                        id="specialty_slug" name='specialty_slug' type="text" placeholder="Nhập slug chuyên ngành">
-                                </div>
-                                <div class="mb-4">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                                    Chuyên ngành
-                                    </label>
-                                    <input
-                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                        id="specialty" name='specialty' type="text" placeholder="Nhập chuyên ngành">
+                                        id="specialty" name='specialty' type="text"
+                                        placeholder="Nhập chuyên ngành">
                                 </div>
                                 <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2">
@@ -315,8 +354,7 @@
                                     </select>
                                 </div>
                                 <div class="mb-6">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2"
-                                        for="street_address">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="street_address">
                                         Tên đường/Số nhà
                                     </label>
                                     <input
@@ -345,8 +383,8 @@
                         </form>
                     </div>
                 </div>
-              
-              
+
+
 
 
             </div>
@@ -356,41 +394,42 @@
                         <th class="px-4 py-2">Tên bệnh viện</th>
                         <th class="px-4 py-2">Logo</th>
                         <th class="px-4 py-2">Giới thiệu</th>
-                        
+
                         <th class="px-4 py-2">Địa chỉ</th>
                         <th class="px-4 py-2">Số chuyên ngành</th>
                         <th class="px-4 py-2">Số bác sĩ</th>
-                        
+
                         <th class="px-4 py-2">Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($hospitals as $hospital)
-                    <tr>
-                        <td class="px-4 py-2">{{ $hospital['name'] }}</td>
-                       
-                        <td class="px-4 py-2">
-                            <img src="{{ asset($hospital['logo']) }}" alt="Logo Bệnh Viện" class="w-10 h-10">
-                        </td>
-                        <td class="px-4 py-2">{{ $hospital['introduce'] }}</td>
-                        <td class="px-4 py-2">{{ $hospital['id_address'] }}</td>
-                        <td class="px-4 py-2">{{  count($hospital['Special'])}}</td>
-                        <td class="px-4 py-2">{{ count($hospital['doctors']) }}</td>
-                        <td class="px-4 py-2">
-                            <form action="{{ route('delete-hospital', $hospital['id']) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                                    Xóa
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="px-4 py-2">{{ $hospital['name'] }}</td>
+
+                            <td class="px-4 py-2">
+                                <img src="{{ asset($hospital['logo']) }}" alt="Logo phòng khám" class="w-10 h-10">
+                            </td>
+                            <td class="px-4 py-2">{{ $hospital['introduce'] }}</td>
+                            <td class="px-4 py-2">{{ $hospital['id_address'] }}</td>
+                            <td class="px-4 py-2">{{ count($hospital['Special']) }}</td>
+                            <td class="px-4 py-2">{{ count($hospital['doctors']) }}</td>
+                            <td class="px-4 py-2">
+                                <form action="{{ route('delete-hospital', $hospital['id']) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                        Xóa
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
-            
-            
+
+
 
 
         </div>

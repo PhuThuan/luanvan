@@ -110,7 +110,7 @@
     <div class="container mx-auto p-4 flex">
         <div class="w-1/2 p-4">
             <!-- Content for the first column -->
-            <h2 class="text-2xl font-semibold">Thông tin bệnh viện</h2>
+            <h2 class="text-2xl font-semibold">Thông tin phòng khám</h2>
             <p class="mt-2 text-gray-700">{{$hospital['name']}}</p>
         </div>
         <div class="w-1/2 p-4">
@@ -133,7 +133,12 @@
                             <td class="border px-4 py-2">{{$Specialty['name']}}</td>
                             <td class="border px-4 py-2">{{$doctor['full_name']}}</td>
                             <td class="border px-4 py-2">{{$Workkingtime['start_time']}} - {{$Workkingtime['end_time']}}</td>
-                            <td class="border px-4 py-2">Tiền khám 1</td>
+                            @if ($cost->cost==0)
+                            <td class="border px-4 py-2">Miễn phí</td>
+                            @else
+                            <td class="border px-4 py-2">{{$cost->cost}}</td>
+                            @endif
+                          
                         </tr>
                     </tbody>
                 </table>
@@ -170,13 +175,29 @@
         </div>
         <div class="w-1/2">
             <div class="bg-gray-100 p-4">
-                <h2 class="text-2xl font-semibold">Thanh toán VNPAY</h2>
-                <form method="POST" action="{{ route('thanhtoan',['idrc'=>$Schedule['id'],'idws'=>$patientRecords['id']]) }}">
+                @if ($cost->cost==0)
+                <h2 class="text-2xl font-semibold">Đặt lịch</h2>
+                <form method="POST" action="{{ route('datlich',['idrc'=>$Schedule['id'],'idws'=>$patientRecords['id']]) }}">
                     @csrf
                     
                     <!-- Thêm các trường thông tin khác cần thiết cho thanh toán -->
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full mt-4">Đặt lịch</button>
+                </form>
+                @else
+                <h2 class="text-2xl font-semibold">Thanh toán VNPAY</h2>
+                <form method="POST" action="{{ route('thanhtoan',['idrc'=>$Schedule['id'],'idws'=>$patientRecords['id']]) }}">
+                    @csrf
+                    <select name="tnh" class="border rounded px-4 py-2 focus:outline-none focus:border-blue-500">
+                        <option class="py-2">Chọn ngân hàng</option>
+                        <option value="acb" class="py-2">ACB</option>
+                        <option value="ncb" class="py-2">NCB</option>
+                    </select>
+                    <br>
+                    <!-- Thêm các trường thông tin khác cần thiết cho thanh toán -->
                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full mt-4">Thanh toán</button>
                 </form>
+                @endif
+               
             </div>
         </div>
     </div>

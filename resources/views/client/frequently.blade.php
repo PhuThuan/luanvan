@@ -115,7 +115,7 @@
 
                     <!-- Danh sách các nút -->
                     @foreach ($questionCategories as $questionCategory)
-                        <li class="flex items-center justify-between bg-white shadow-md p-4 rounded-lg">
+                        <li class="flex items-center justify-between shadow-md p-4 rounded-lg">
                             <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
                                 data-content="content{{ $questionCategory['id'] }}">{{ $questionCategory['name'] }}</button>
                         </li>
@@ -131,23 +131,21 @@
           
 
        
-                @foreach ($questionCategories as $questionCategorie)
-                    <div id="content{{ $questionCategorie['id'] }}" class="p-4 hidden space-y-4">
-                        @foreach ($questions as $question)
-                            @if ($questionCategorie['id'] == $question['id_questionCategories'])
-                                <div class="">
-                                    <div class="cursor-pointer bg-gray-500 p-2 question-name">
-                                        {{ $question['name'] }}
-                                    </div>
-                                    @foreach (explode("\n", $question['Answer']) as $line)
-                                    <li>{{ $line }}</li>
-                                @endforeach
-                                  
-                                                                   </div>
-                            @endif
-                        @endforeach
-                    </div>
+            @foreach ($questionCategories as $questionCategorie)
+            <div id="content{{ $questionCategorie['id'] }}" class="p-4 hidden">
+                @foreach ($questions as $question)
+                    @if ($questionCategorie['id'] == $question['id_questionCategories'])
+                        <div class="relative">
+                            <div class="cursor-pointer bg-gray-200 p-2 question-name">
+                                {{ $question['name'] }}
+                            </div>
+                            <div class="hidden question-answer">{!! nl2br($question['Answer']) !!} </div>
+                           
+                        </div>
+                    @endif
                 @endforeach
+            </div>
+        @endforeach
            
 
         </div>
@@ -172,7 +170,47 @@
             });
         });
     </script>
-  
+    <script>
+        // Lấy các phần tử cần thao tác
+        const questionForm = document.getElementById("questionForm");
+        const addQuestionButton = document.getElementById("addQuestionButton");
+        const submitQuestionButton = document.getElementById("submitQuestionButton");
+        const cancelQuestionButton = document.getElementById("cancelQuestionButton");
+
+        // Bắt sự kiện khi nút "Thêm câu hỏi" được nhấp
+        addQuestionButton.addEventListener("click", function() {
+            questionForm.style.display = "block"; // Hiển thị biểu mẫu
+        });
+
+        // Bắt sự kiện khi nút "Hủy" được nhấp
+        cancelQuestionButton.addEventListener("click", function() {
+            questionForm.style.display = "none"; // Ẩn biểu mẫu
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const addCategoryButton = document.getElementById("addCategoryButton");
+            const categoryForm = document.getElementById("categoryForm");
+            const submitCategoryButton = document.getElementById("submitCategoryButton");
+            const cancelCategoryButton = document.getElementById("cancelCategoryButton");
+
+            addCategoryButton.addEventListener("click", function() {
+                categoryForm.classList.remove("hidden");
+            });
+
+            cancelCategoryButton.addEventListener("click", function() {
+                categoryForm.classList.add("hidden");
+            });
+
+            // Đối với biểu mẫu, bạn có thể thêm sự kiện submit để xử lý việc gửi dữ liệu.
+            submitCategoryButton.addEventListener("click", function() {
+                categoryForm.classList.add("hidden");
+
+                // Thêm mã JavaScript để gửi dữ liệu biểu mẫu tại đây.
+                // Sử dụng fetch hoặc XMLHttpRequest để gửi dữ liệu đến máy chủ.
+            });
+        });
+    </script>
     <script>
         const buttons = document.querySelectorAll('[data-content]');
         buttons.forEach(button => {
@@ -190,7 +228,6 @@
             });
         });
     </script>
-
 
 </body>
 

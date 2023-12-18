@@ -24,6 +24,7 @@ class User extends Authenticatable
         'id_permisstion',
         'role',
         'last_accessed',
+        'gr_id',
     ];
     protected $dates = ['last_accessed'];
     /**

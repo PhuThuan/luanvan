@@ -81,7 +81,7 @@ class PatientRecordController extends Controller
 
         return view('client/patientrecords', ['patientRecords' => $patientRecords]);
     }
-    public function stores(Request $request)
+    public function stores(patientrecordsResquest $request)
     {
         $address = $request->only('province', 'district', 'ward', 'street_address');
 
@@ -103,7 +103,7 @@ class PatientRecordController extends Controller
         );
         return redirect()->back();
     }
-    public function updateid($id, Request $request)
+    public function updateid($id, patientrecordsResquest $request)
     {
         $patientRecords = [];
 
@@ -126,6 +126,18 @@ class PatientRecordController extends Controller
             'id_address' => $id_address['id'],
 
         ];
+        $patientRecord->update($tempt);
         return redirect()->back();
     }
+    public function delete($id){
+        $patientRecord = patientRecordsModel::find($id);
+        if ($patientRecord){
+
+
+            $patientRecord->update('status',0);
+            // $patientRecord->delete();
+        }
+        return redirect()->back();
+    }
+    
 }

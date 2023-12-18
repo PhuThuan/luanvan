@@ -5,6 +5,7 @@ namespace App\Http\Controllers\client;
 use App\Http\Controllers\Controller;
 use App\Models\AddressModel;
 use App\Models\appointmentScheduleModel;
+use App\Models\CostModel;
 use App\Models\DoctorModel;
 use App\Models\hospitalModel;
 use App\Models\patientRecordsModel;
@@ -121,9 +122,14 @@ class formOfChoiceeduleController extends Controller
     $Specialty = SpecialtyModel::where('id', $doctor['id_specialty'])->first();
     $patientRecords = patientRecordsModel::where('id', $idrc)->first();
     $address = AddressModel::where('id', $patientRecords['id_address'])->first();
+    $cost = CostModel::where('id_hospital', $hospital->id)->first();
+    $app = appointmentScheduleModel::where('id_patient_records', $idrc)->where('id_ws', $idchs)->first();
 
-
-    return view('client.done', ['hospital' => $hospital, 'Workkingtime' =>  $Workkingtime, 'doctor' => $doctor, 'patientRecords' => $patientRecords, 'Specialty' => $Specialty, 'address' => $address, 'Schedule' => $Schedule]);
+    if ($app) {
+      return to_route('formOfChoiceedule',['slug'=>$slug]);
+    }
+    return view('client.done', ['hospital' => $hospital, 'Workkingtime' =>  $Workkingtime, 'doctor' => $doctor, 'patientRecords' => $patientRecords, 'Specialty' => $Specialty, 'address' => $address, 'Schedule' => $Schedule, 'cost' => $cost]);
+  
   }
   public function chuyenkhoa($slug)
   {
@@ -152,14 +158,14 @@ class formOfChoiceeduleController extends Controller
     $specialtyDoctors = DoctorModel::where('id_specialty', $khoa)->get();
 
     foreach ($specialtyDoctors as $key => $doctor) {
-        $user = User::where('id', $doctor['id_user'])->where('role', 2)->first();
-    
-        if ($user != null) {
-            unset($specialtyDoctors[$key]);
-        }
+      $user = User::where('id', $doctor['id_user'])->where('role', 2)->first();
+
+      if ($user != null) {
+        unset($specialtyDoctors[$key]);
+      }
     }
-    
-  
+
+
     // Retrieve the doctors associated with the hospital
     return view('client/chuyenkhoa1', ['slug' => $slug, 'hospital' => $hospital, 'doctors' => $specialtyDoctors, 'address' => $addresshospital, 'specialties' => $specialties]);
   }

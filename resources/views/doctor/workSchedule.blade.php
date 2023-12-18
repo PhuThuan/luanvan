@@ -31,7 +31,20 @@
                 class="flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-14 bg-blue-800  border-none">
                 <img class="w-7 h-7 md:w-10 md:h-10 mr-2 rounded-md overflow-hidden"
                     src="https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar.jpg" />
-                <span class="hidden md:block">ADMIN</span>
+                <span class="hidden md:block">
+
+                    @php
+                        $user = Auth::user(); // Lấy thông tin người dùng đăng nhập
+                        if ($user) {
+                            $name = $user->name; // Truy cập trường 'name' của người dùng
+                            // Sử dụng biến $name cho mục đích bạn cần
+                        } else {
+                            // Người dùng chưa đăng nhập
+                        }
+
+                    @endphp
+                    {{ $name }}
+                </span>
             </div>
             <div class="flex justify-between items-center h-14 ">
                 <div
@@ -47,25 +60,33 @@
                 </div>
                 <ul class="flex items-center">
                     <li>
-                        <A :href="#"
-                            class="static flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600   hover:border-blue-500">
-                            <span class="inline-flex justify-center items-center ml-1 relative">
-                                <svg style="font-size: x-large;" class="w-7 h-7  " fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
-                                    </path>
-                                </svg>
-                                <span style="font-size: x-small;top: -8px;right: -3px;"
-                                    class="absolute  px-1 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full"></span>
-
-                            </span>
-                        </A>
-                    </li>
-                    <li>
-                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="flex items-center mx-2 hover:text-blue-100">
+                        <li>
+                            <a href="{{ route('notificationDoctor') }}"
+                                class="static flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600   hover:border-blue-500">
+                                <span class="inline-flex justify-center items-center ml-1 relative">
+                                    <svg style="font-size: x-large;" class="w-7 h-7  " fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                                        </path>
+                                    </svg>
+                                   @if ($noti1<=9)
+                                   <span  style="font-size: x-small;top: -8px;right: -3px;"
+                                    class="absolute  px-1 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full">{{$noti1}}</span>
+                                   @else
+                                   <span  style="font-size: x-small;top: -8px;right: -3px;"
+                                    class="absolute  px-1 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full">9+</span>  
+                                   @endif
+                                  
+                                </span>
+                            </a>
+                        </li>
+                        <a href="#"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            class="flex items-center mx-2 hover:text-blue-100">
                             <span class="inline-flex mr-1">
-                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013 3h4a3 3 0 013 3v1">
                                     </path>
@@ -73,12 +94,11 @@
                             </span>
                             Logout
                         </a>
-                        
+
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                        
-                    </li>
+
                 </ul>
             </div>
         </div>
@@ -103,19 +123,8 @@
                 </a>
               </li> -->
                     <li>
-                        <a href="#"
-                            class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
-                            <span class="inline-flex justify-center items-center ml-4">
-                                <i class="fas fa-tag  w-5 h-5"></i>
-                                <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg> -->
-                            </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Tổng quan</span>
-                            <!-- <span class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-blue-500 bg-indigo-50 rounded-full">New</span> -->
-                        </a>
-                    </li>
-                    <li>
 
-                        <A href="DoctorAccount"
+                        <A href="{{ route('doctorinfomation') }}"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <i class="fas fa-users  w-5 h-5"></i>
@@ -125,7 +134,7 @@
                         </A>
                     </li>
                     <li>
-                        <A href="workSchedule"
+                        <A href="/workSchedule"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <i class="fas fa-shopping-cart   w-5 h-5"></i>
@@ -134,28 +143,7 @@
                             <span class="ml-2 text-sm tracking-wide truncate">Lịch làm việc</span>
                         </A>
                     </li>
-                    <li>
-                        <A href="/admin/service"
-                            class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
-                            <span class="inline-flex justify-center items-center ml-4">
-                                <i class="fas fa-tag  w-5 h-5"></i>
-                                <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg> -->
-                            </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Thống kê</span>
-                        </A>
-                    </li>
-                    <li>
-                        <A href="#"
-                            class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500   pr-6">
-                            <span class="inline-flex justify-center items-center ml-4">
-                                <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg> -->
-                                <i class="fas fa-file-alt w-5 h-5"></i>
-                            </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Báo cáo</span>
-                            <!-- <span class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full">1.2k</span> -->
-                        </A>
-                    </li>
-                    <li class="px-5 hidden md:block">
+                    {{-- <li class="px-5 hidden md:block">
                         <div class="flex flex-row items-center mt-5 h-8">
                             <div class="text-sm font-light tracking-wide text-gray-400 uppercase">Settings</div>
                         </div>
@@ -169,7 +157,7 @@
                 </a>
               </li>-->
                     <li>
-                        <A :href="route('setting_premission')"
+                        <a href="route('setting_premission')"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800   text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500   pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -182,9 +170,9 @@
                                 </svg>
                             </span>
 
-                            <span class="ml-2 text-sm tracking-wide truncate">Permission</span>
-                        </A>
-                    </li>
+                            <span class="ml-2 text-sm tracking-wide truncate">Cài đặt</span>
+                          </a>
+                    </li> --}}
                 </ul>
                 <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright @2023</p>
             </div>
@@ -196,29 +184,20 @@
             <div class="mt-4 mx-4">
 
 
-                <div class="flex justify-between ">
-                    <div class="text-center">
-                        <h1 class="text-3xl font-semibold mb-4">Lịch làm việc</h1>
-                    </div>
-                    <div class="relative text-right">
-                        <a id="addScheduleButton" href="{{ route('createworkSchedule') }}"
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                            Thêm lịch làm việc
-                        </a>
-                    </div>
 
-                </div>
 
                 <div class="flex justify-between mb-4">
-                    <button
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                        Tuần trước
-                    </button>
+                    <a href="{{ route('workSchedule',['id'=>$idRoute - 1]) }}"> <button
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            Tuần trước
+                        </button>
+                    </a>
                     <h1 class="text-3xl font-semibold mb-4 text-center">Thông tin về thời gian</h1>
-                    <button
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                        Tuần sau
-                    </button>
+                    <a href="{{ route('workSchedule',['id'=>$idRoute + 1]) }}"> <button
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            Tuần sau
+                        </button>
+                    </a>
                 </div>
             </div>
             <div class="bg-white rounded-lg shadow-lg ">
@@ -257,30 +236,43 @@
                                         @endif
                                     </h2>
                                     <h2 class="text-2xl font-bold mb-4">{{ $dateRange }}</h2>
-
+                                    {{-- {{ $workSchedules }}  --}}
                                     @foreach ($workSchedules as $item)
-                                        @if ($item['day'] == $dateRange)
-                                            <div class="border p-4 mb-4">
-                                                <p class="text-lg font-semibold mb-2">
-                                                    {{ date('H:i', strtotime($item['start_time'])) }} -
-                                                    {{ date('H:i', strtotime($item['end_time'])) }}
-                                                </p>
+                                        @if (isset($item['day']))
+                                            @if ($item['day'] == $dateRange)
+                                                <div class="border p-4 mb-4">
+                                                    <p class="text-lg font-semibold mb-2">
+                                                        {{ date('H:i', strtotime($item['start_time'])) }} -
+                                                        {{ date('H:i', strtotime($item['end_time'])) }}
+                                                    </p>
 
-                                                <ul>
+                                                    <ul>
 
-                                                    <li>
-                                                        <span class="font-semibold">Đặt lịch:</span>
-                                                        @if ($item['schedules'] == 0)
-                                                            Chưa
-                                                        @else
-                                                            Rồi
-                                                        @endif
-                                                    </li>
-                                                    <!-- Add other schedule properties here -->
+                                                        <li>
+                                                            <span class="font-semibold">Đặt lịch:</span>
+                                                            @if ($item['schedules'] == 0)
+                                                                Chưa
+                                                            @else
+                                                                Rồi
+                                                            @endif
+                                                        </li>
 
-                                                </ul>
+                                                        <!-- Add other schedule properties here -->
 
-                                            </div>
+                                                    </ul>
+                                                    <ul>
+
+                                                        <li>
+                                                       
+                                                                
+                                                        </li>
+                                                        
+                                                        <!-- Add other schedule properties here -->
+
+                                                    </ul>
+
+                                                </div>
+                                            @endif
                                         @endif
                                     @endforeach
                                 </div>

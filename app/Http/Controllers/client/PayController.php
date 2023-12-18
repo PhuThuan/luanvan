@@ -9,6 +9,7 @@ use App\Models\appointmentScheduleModel;
 use App\Models\CostModel;
 use App\Models\DoctorModel;
 use App\Models\hospitalModel;
+use App\Models\notiNotificationModel;
 use App\Models\patientRecordsModel;
 use App\Models\ScheduleModel;
 use App\Models\SpecialtyModel;
@@ -21,9 +22,17 @@ class PayController extends Controller
     //3
 
     public function index($idrc, $idws)
-    { 
+    {
+
+
+
+
+
+
+
+
         $pr =   patientRecordsModel::find($idws);
-     
+
         $sch =    ScheduleModel::find($idrc);
 
         $doctor = DoctorModel::find($sch['id_doctor']);
@@ -34,9 +43,16 @@ class PayController extends Controller
         $address = AddressModel::find($hospital['id_address']);
         $nameAddress = $address['street_address'] . ' ' . $address['commune'] . ' ' . $address['district'] . ' ' . $address['province'];
         $time = WorkkingtimeModel::find($sch['id_working_time']);
-
+        $string = $pr['name'] . ' đã đăng ký lịch khám vào ngày ' . $time['day'] . ' lúc ' . $time['start_time'] . ' đến ' . $time['end_time'];
+        $notification = notiNotificationModel::create([
+            'id_user' => $doctor['id_user'],
+            'name' => 'Thông báo từ hệ thóng',
+            'description' => $string,
+            'read' => false,
+        ]);
         $appointmentschedule =   appointmentScheduleModel::create([
             'id_patient_records' => $idws,
+            'id_ws' => $idrc,
             'name' => $pr['name'],
             'age' => $pr['date_of_birth'],
             'gender' => $pr['gender'],
@@ -51,9 +67,9 @@ class PayController extends Controller
         ScheduleModel::where('id', $idrc)->update([
             'status' => 1,
         ]);
-        Mail::to( $pr['email'])->send(new SendMail($appointmentschedule));
+        Mail::to($pr['email'])->send(new SendMail($appointmentschedule));
 
-$cost=CostModel::find( $hospital['id']);
+        $cost = CostModel::find($hospital['id']);
         error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
         date_default_timezone_set('Asia/Ho_Chi_Minh');
 
@@ -160,5 +176,79 @@ $cost=CostModel::find( $hospital['id']);
         }
         // vui lòng tham khảo thêm tại code demo
 
+    }
+    public function datlich($idrc, $idws)
+    {
+        $pr =   patientRecordsModel::find($idws);
+
+        $sch =    ScheduleModel::find($idrc);
+
+        $doctor = DoctorModel::find($sch['id_doctor']);
+
+        $Specialty =  SpecialtyModel::find($doctor['id_specialty']);
+
+        $hospital = hospitalModel::find($Specialty['id_hospital']);
+        $address = AddressModel::find($hospital['id_address']);
+        $nameAddress = $address['street_address'] . ' ' . $address['commune'] . ' ' . $address['district'] . ' ' . $address['province'];
+        $time = WorkkingtimeModel::find($sch['id_working_time']);
+
+        $appointmentschedule =   appointmentScheduleModel::create([
+            'id_patient_records' => $idws,
+            'id_ws' => $idrc,
+            'name' => $pr['name'],
+            'age' => $pr['date_of_birth'],
+            'gender' => $pr['gender'],
+            'doctor' =>  $doctor['full_name'],
+            'specialty' => $Specialty['name'],
+            'hospital' =>  $hospital['name'],
+            'address' => $nameAddress,
+            'start_time' => $time['start_time'],
+            'end_time' => $time['end_time'],
+            'day' => $time['day'],
+        ]);
+        ScheduleModel::where('id', $idrc)->update([
+            'status' => 1,
+        ]);
+        Mail::to($pr['email'])->send(new SendMail($appointmentschedule));
+        $string = $pr['name'] . ' đã đăng ký lịch khám vào ngày ' . $time['day'] . ' lúc ' . $time['start_time'] . ' đến ' . $time['end_time'];
+        $notification = notiNotificationModel::create([
+            'id_user' => $doctor['id_user'],
+            'name' => 'Thông báo từ hệ thóng',
+            'description' => $string,
+            'read' => false,
+        ]);
+        return to_route('medicalBill', ['id' => $appointmentschedule['id']]); // 
+    }
+
+    public function huy(Request $request)
+    {
+        // dd($request->input('appointment_id'));
+
+
+
+        $app =   appointmentScheduleModel::find($request->input('appointment_id'));
+        $pr =   patientRecordsModel::find($app['id_patient_records']);
+        ScheduleModel::where('id', $app['id_ws'])->update([
+            'status' => 0,
+        ]);
+        $aa =  ScheduleModel::where('id', $app['id_ws'])->first();
+          
+          
+        
+      
+        $doctor = DoctorModel::find($aa['id_doctor']);
+        // dd(  $doctor);
+        $string = $pr['name'] . ' đã hũy lịch khám vào ngày ' . $app['day'] . ' lúc ' . $app['start_time'];
+        $notification = notiNotificationModel::create([
+            'id_user' => $doctor['id_user'],
+            'name' => 'Thông báo từ hệ thóng',
+            'description' => $string,
+            'read' => false,
+        ]);
+
+        // dd($notification);
+        $app->delete();
+
+        return redirect()->back();
     }
 }

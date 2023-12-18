@@ -7,13 +7,14 @@
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.6",
-        "axios": "^1.5.1",
+        "axios": "^1.6.2",
         "bootstrap": "^5.2.3",
         "laravel-vite-plugin": "^0.8.0",
         "sass": "^1.56.1",
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "fullcalendar": "^6.1.9"
+        "fullcalendar": "^6.1.9",
+        "quill": "^1.3.6"
     }
 }

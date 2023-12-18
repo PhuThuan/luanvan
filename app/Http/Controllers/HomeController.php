@@ -77,7 +77,7 @@ class HomeController extends Controller
             }
         }
         
-            
+            //  dd($patientRecords);
 
         return view('home', ['patientrecords' => $patientRecords, 'phieukhambenh' =>  $phieukhambenhList, 'Notification' => count($Notification)]);
     }

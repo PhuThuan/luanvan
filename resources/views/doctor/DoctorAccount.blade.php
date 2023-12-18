@@ -92,15 +92,15 @@
                         </div>
                     </li>
                     <!-- <li>
-                <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
-                  <span class="inline-flex justify-center items-center ml-4">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                  </span>
-                  <span class="ml-2 text-sm tracking-wide truncate">Trang chủ</span>
-                </a>
-              </li> -->
-                    <li>
-                        <a href="#"
+        <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+          </span>
+          <span class="ml-2 text-sm tracking-wide truncate">Trang chủ</span>
+        </a>
+      </li> -->
+                    {{-- <li>
+                        <a href="{{ route('admindoctor') }}"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <i class="fas fa-tag  w-5 h-5"></i>
@@ -109,64 +109,77 @@
                             <span class="ml-2 text-sm tracking-wide truncate">Tổng quan</span>
                             <!-- <span class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-blue-500 bg-indigo-50 rounded-full">New</span> -->
                         </a>
+                    </li> --}}
+
+                    <li>
+                        <a href="{{ route('admindoctorinformation') }}"
+                            class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
+                            <span class="inline-flex justify-center items-center ml-4">
+                                <i class="fas fa-tag  w-5 h-5"></i>
+                                <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg> -->
+                            </span>
+                            <span class="ml-2 text-sm tracking-wide truncate">Thông tin của phòng khám</span>
+                            <!-- <span class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-blue-500 bg-indigo-50 rounded-full">New</span> -->
+                        </a>
                     </li>
                     <li>
-
-                        <A href="DoctorAccount"
+                        <a href="{{ route('Doctor') }}"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <i class="fas fa-users  w-5 h-5"></i>
                                 <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg> -->
                             </span>
                             <span class="ml-2 text-sm tracking-wide truncate">Thông tin bác sĩ</span>
-                        </A>
+                        </a>
                     </li>
                     <li>
-                        <A href="workSchedule"
+                        <a href="{{ route('admindoctorspecialist') }}"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
-                                <i class="fas fa-shopping-cart   w-5 h-5"></i>
+                                <i class="fas fa-users  w-5 h-5"></i>
                                 <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg> -->
                             </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Lịch làm việc</span>
-                        </A>
+                            <span class="ml-2 text-sm tracking-wide truncate">Chuyên ngành</span>
+                        </a>
                     </li>
                     <li>
-                        <A href="/admin/service"
+                        <a href="{{ route('adminworkSchedule') }}"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
-                                <i class="fas fa-tag  w-5 h-5"></i>
+                                <i class="fas fa-users  w-5 h-5"></i>
+                                <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg> -->
+                            </span>
+                            <span class="ml-2 text-sm tracking-wide truncate">Lịch Làm việc</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('adminstatistical') }}"
+                            class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
+                            <span class="inline-flex justify-center items-center ml-4">
+                                <i class="fas fa-users  w-5 h-5"></i>
                                 <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg> -->
                             </span>
                             <span class="ml-2 text-sm tracking-wide truncate">Thống kê</span>
-                        </A>
-                    </li>
-                    <li>
-                        <A href="#"
-                            class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500   pr-6">
-                            <span class="inline-flex justify-center items-center ml-4">
-                                <!-- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg> -->
-                                <i class="fas fa-file-alt w-5 h-5"></i>
-                            </span>
-                            <span class="ml-2 text-sm tracking-wide truncate">Báo cáo</span>
-                            <!-- <span class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full">1.2k</span> -->
-                        </A>
+                        </a>
                     </li>
                     <li class="px-5 hidden md:block">
                         <div class="flex flex-row items-center mt-5 h-8">
                             <div class="text-sm font-light tracking-wide text-gray-400 uppercase">Settings</div>
                         </div>
                     </li>
+
+
+
                     <!-- <li>
-                <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800   text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500   pr-6">
-                  <span class="inline-flex justify-center items-center ml-4">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                  </span>
-                  <span class="ml-2 text-sm tracking-wide truncate">Profile</span>
-                </a>
-              </li>-->
+        <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800   text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500   pr-6">
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+          </span>
+          <span class="ml-2 text-sm tracking-wide truncate">Profile</span>
+        </a>
+      </li>-->
                     <li>
-                        <A :href="route('setting_premission')"
+                        <a href="route('setting_premission')"
                             class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800   text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500   pr-6">
                             <span class="inline-flex justify-center items-center ml-4">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -180,7 +193,7 @@
                             </span>
 
                             <span class="ml-2 text-sm tracking-wide truncate">Permission</span>
-                        </A>
+                        </a>
                     </li>
                 </ul>
                 <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright @2023</p>
@@ -188,7 +201,7 @@
         </div>
         <!-- ./Sidebar -->
 
-        <div class="h-full ml-14 mt-14 mb-10 md:ml-64">
+        <div class="h-full ml-14 mt-14 mb-10 md:ml-64 w-[80%]">
 
             <div class="mt-4 mx-4">
 
@@ -238,9 +251,12 @@
                                             placeholder="Nhập tên bác sĩ">
                                     </div>
                                     <div class="mb-4">
-                                        
-                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="sex">Giới tính</label>
-                                        <select class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none focus:shadow-outline" id="sex" name="sex">
+
+                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="sex">Giới
+                                            tính</label>
+                                        <select
+                                            class="w-full px-3 py-2 text-gray-700 border rounded focus:outline-none focus:shadow-outline"
+                                            id="sex" name="sex">
                                             <option value="nam">Nam</option>
                                             <option value="nu">Nữ</option>
                                             <option value="khac">Khác</option>
@@ -344,18 +360,22 @@
                                                 @foreach ($doctors as $id => $doctor)
                                                     <tr
                                                         class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                                                        <td class="whitespace-nowrap px-6 py-4 font-medium">  {{ $id+1 }}</td>
+                                                        <td class="whitespace-nowrap px-6 py-4 font-medium">
+                                                            {{ $id + 1 }}</td>
                                                         <td class="whitespace-nowrap px-6 py-4">
                                                             {{ $doctor['full_name'] }}</td>
-                                                            <td class="whitespace-nowrap px-6 py-4">
-                                                                {{ $doctor['sex'] }}</td>
+                                                        <td class="whitespace-nowrap px-6 py-4">
+                                                            {{ $doctor['sex'] }}</td>
                                                         <td class="whitespace-nowrap px-6 py-4">
                                                             {{ $doctor['specialty'] }}</td>
                                                         <td class="whitespace-nowrap px-6 py-4">
                                                             {{ $doctor['Qualifications'] }}</td>
-                                                            <td class="whitespace-nowrap px-6 py-4">
-                                                                {{ $doctor['address'] }}</td>
+                                                        <td class="whitespace-nowrap px-6 py-4">
+                                                            {{ $doctor['address'] }}</td>
                                                         @if ($doctor['full_name'] != 'admin')
+                                                        <td class="whitespace-nowrap px-6 py-4 ">
+                                                            <a href="{{ route('adminsdoctordetail', $doctor['id']) }}"  class="bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Chi tiết</a> 
+                                                         </td>
                                                             <td class="whitespace-nowrap px-6 py-4">
                                                                 <form
                                                                     action="{{ route('delete-doctor', $doctor['id']) }}"
@@ -368,7 +388,9 @@
                                                                     </button>
                                                                 </form>
                                                             </td>
+                                                           
                                                         @endif
+                                                       
                                                     </tr>
                                                 @endforeach
                                             </tbody>

@@ -1,4 +1,4 @@
-<h2>Xin chào {{ $data['name'] }}</h2> 
+<h2>Xin chào {{ $data['name'] }}, Cảm ơn bạn đã sử dụng hệ thống của chúng tôi</h2> 
 <br>
     
 <div class="bg-white max-w-md mx-auto p-8 rounded-lg shadow-md">
@@ -34,7 +34,7 @@
         <p class="text-black font-medium"></p>
     </div>
     <div class="mb-4">
-        <label class="text-gray-600 font-semibold">Địa Chỉ: {{   $data['address']}}</label>
+        <label class="text-gray-600 font-semibold">Địa Chỉ Phòng Khám:: {{   $data['address']}}</label>
         <p class="text-black font-medium"></p>
     </div>
     <h1>Chúc bạn sức khỏe!</h1>

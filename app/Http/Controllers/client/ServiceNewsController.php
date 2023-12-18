@@ -3,23 +3,30 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Models\newsModel;
 use Illuminate\Http\Request;
 
 class ServiceNewsController extends Controller
 {
     //
     public function index(){
-        return view('client.servicenews');
+     $new=   newsModel::where('id_newsCategories',3)->get()->toarray();
+   // dd( $new);
+        return view('client.tintuc',['new'=>$new]);
     }
     public function service(){
-        return view('client.client.service');
+        $new=   newsModel::where('id_newsCategories',4)->get()->toarray();
+       
+        return view('client.tintucservice',['new'=>$new]);
     }
 
-    public function indexid(){
-        return view('client.servicenews');
+    public function indexid($id){
+        $new=   newsModel::find($id);
+        return view('client.tintucid',['new'=>$new]);
     }
-    public function serviceid(){
-        return view('client.servicenews');
+    public function serviceid($id){
+        $new=   newsModel::find($id);
+        return view('client.tintucserviceid',['new'=>$new]);
     }
 
     

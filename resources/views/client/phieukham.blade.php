@@ -106,7 +106,10 @@
             </div>
         </div>
     </header>
+    <a href="{{url('/home')}}" class="ml-[20%] bg-blue-500 text-white px-4 py-2 rounded">Quay lại</a>
+
     <div class="bg-white max-w-md mx-auto p-8 rounded-lg shadow-md">
+      
         <h1 class="text-2xl font-semibold text-center mb-4">Phiếu Khám Bệnh </h1>
         <div class="mb-4">
             <label class="text-gray-600 font-semibold">Thông Tin Phòng Khám</label>
@@ -139,7 +142,7 @@
             <p class="text-black font-medium">{{   $phieukhambenh['start_time']}}</p>
         </div>
         <div class="mb-4">
-            <label class="text-gray-600 font-semibold">Địa Chỉ:</label>
+            <label class="text-gray-600 font-semibold">Địa Chỉ Phòng Khám:</label>
             <p class="text-black font-medium">{{   $phieukhambenh['address']}}</p>
         </div>
 
@@ -147,5 +150,16 @@
             <p class="text-center text-gray-700">Chúc bạn sức khỏe!</p>
         </div>
     </div>
+    <footer class="bg-gray-800  py-4 mt-[70px]">
+        <div class="container mx-auto flex items-center justify-between">
+            <div>
+                <p>&copy; 2023 Your Company. All rights reserved.</p>
+            </div>
+            <div>
+                <a href="#" class="text-gray-300 hover:text-white px-2">Privacy Policy</a>
+                <a href="#" class="text-gray-300 hover:text-white px-2">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

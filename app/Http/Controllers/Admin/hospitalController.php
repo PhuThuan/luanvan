@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Models\AddressModel;
 use App\Models\CostModel;
@@ -11,6 +11,7 @@ use App\Models\SpecialtyModel;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class hospitalController extends Controller
 {
@@ -87,9 +88,10 @@ class hospitalController extends Controller
         }
         $user = User::create([
             'email' => $request->input('user'),
-            'password' => $request->input('password'),
+            'password' => Hash::make($request->input('password')),
             'name' => 'Admin',
             'role' => '2',
+            'gr_id' => '5',
         ]);
     
         $dd = hospitalModel::create([
@@ -99,7 +101,7 @@ class hospitalController extends Controller
             'logo' =>  $data['image_url'],
             'introduce' => $request->input('introduce'),
             'status' => 1,
-            'slug' => $request->input('slug')
+            'slug' =>Str::slug($request->input('name')) 
         ]);
         $today = Carbon::now('Asia/Ho_Chi_Minh');
         CostModel::create([
@@ -110,7 +112,7 @@ class hospitalController extends Controller
         $specialty = SpecialtyModel::create([
             'id_hospital' => $dd['id'],
             'name' => $request->input('specialty'),
-            'slug' => $request->input('specialty_slug')
+            'slug' => Str::slug($request->input('specialty')),
         ]);
         $doctor = DoctorModel::create([
             'id_address' => $id_address['id'],
@@ -130,5 +132,5 @@ class hospitalController extends Controller
         }
 
         return redirect()->back();
-    }
+    }    
 }

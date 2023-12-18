@@ -26,10 +26,10 @@ class LoginAdminController extends Controller
                 return to_route('adminSys');
             }
             if ($user->role == 2) {
-                return to_route('admindoctor');
+                return to_route('admindoctorinformation');
             }
             if ($user->role == 1) {
-                return to_route('Admin');
+                return to_route('doctorinfomation');
             }
 
             // Redirect to a dashboard or any other route

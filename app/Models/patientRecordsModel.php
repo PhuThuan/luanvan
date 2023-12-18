@@ -23,4 +23,20 @@ class patientRecordsModel extends Model
         'ethnic',
         'status',
     ];
+    public function address()
+    {
+        return $this->belongsTo(AddressModel::class, 'id_address');
+    }
+    public function getFullAddressAttribute()
+    {
+        $address = $this->address;
+
+        $fullAddress = implode(', ', array_filter([$address['province'], $address['district'], $address['commune'], $address['street_address']]));
+
+        return $fullAddress;
+    }
+    public function appointmentSchedule()
+    {
+        return $this->hasOne(appointmentScheduleModel::class, 'id', 'id_patient_records');
+    }
 }

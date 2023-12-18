@@ -108,7 +108,7 @@
     <div class="container mx-auto mt-4 mb-[190px]">
         <h1 class=" font-bold mb-4"><a href="{{ url('/') }}">Trang chủ </a> &#62;
             <a>{{ $hospital['name'] }} </a> &#62; <a>
-                <a> Chọn bác sĩ </a>
+                <a> Chọn chuyên khoa </a>
 
         </h1>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ">

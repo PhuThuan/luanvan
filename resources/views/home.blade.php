@@ -38,7 +38,7 @@
             <div class="relative group w-48 p-6">
                 <div class="text-white py-2 px-4 cursor-pointer ">
                     <a href="{{ route('instruct') }}">
-                        <h1 class="text-black text-lg " >Hướng dẫn</h1>
+                        <h1 class="text-black text-lg ">Hướng dẫn</h1>
                     </a>
                     <ul class="hidden absolute text-white group-hover:block top-full left-0   bg-zinc-50 ">
                         <li><a href="#" class="block py-2 px-4">
@@ -114,7 +114,7 @@
         <div class="grid grid-cols-2 gap-4">
             <div class="col-span-1">
                 <a href="{{ route('patientrecords') }}">
-                    <button  class=" bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg w-[200px]">
+                    <button class=" bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg w-[200px]">
                         Thêm hồ sơ
                     </button>
                 </a>
@@ -136,12 +136,22 @@
                     Thông báo
                 </button>
                 <br>
+                @if ($phieukhambenh != 0)
+                    <button id="button4"
+                        class="w-[200px] bg-gray-500 text-white font-semibold py-2 px-4 rounded-lg mt-4">
+                        Hủy đặt lịch
+                    </button>
+                @endif
+                <br>
             </div>
 
             <div class="col-span-1">
                 <!-- Khung nhìn 1 -->
                 <div id="view1" class="bg-blue-100 p-4 rounded-lg overflow-y-auto" style="max-height: 500px;">
-                    @if ($patientrecords != null)
+
+                    @if (count($patientrecords) === 0)
+                        <p>Không có hồ sơ bệnh</p>
+                    @else
                         @foreach ($patientrecords as $patientrecord)
                             <div class="p-4 border border-gray-300 mb-4 bg-white">
                                 <p class="font-bold">Họ và tên: {{ $patientrecord['name'] }}</p>
@@ -154,15 +164,23 @@
                                 <p class="font-semibold">Dân tộc: {{ $patientrecord['ethnic'] }}</p>
                                 <p class="font-semibold">Địa chỉ: {{ $patientrecord['address'] }}</p>
                                 <div class="font-semibold mt-[10px]">
-                                    <a href="{{ route('patientrecordsupdate', $patientrecord['id']) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Chỉnh sửa</a>
-                                    <a href="{{ route('patientrecordsupdate', $patientrecord['id']) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Xóa</a>
+                                    <a href="{{ route('patientrecordsupdate', $patientrecord['id']) }}"
+                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Chỉnh
+                                        sửa</a>
+                                    <form action="{{ route('patientrecordsdelete', $patientrecord['id']) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                            Xóa
+                                        </button>
+                                    </form>
                                 </div>
-                                
-                                
+
+
                             </div>
                         @endforeach
-                    @else
-                        <p>Không có hồ sơ bệnh</p>
                     @endif
                 </div>
 
@@ -171,10 +189,78 @@
 
 
                 <!-- Khung nhìn 2 -->
-                <div id="view2" class="hidden bg-green-100 p-4 rounded-lg mt-4 overflow-y-auto" style="max-height: 700px;">
+                <div id="view2" class="hidden bg-green-100 p-4 rounded-lg mt-4 overflow-y-auto"
+                    style="max-height: 700px;">
                     @if ($phieukhambenh != 0)
                         @foreach ($phieukhambenh as $phieukhambenhs)
-                        <a href="{{route('medicalBill',['id'=> $phieukhambenhs['id']])}}">
+                            <a href="{{ route('medicalBill', ['id' => $phieukhambenhs['id']]) }}">
+                                <div class="bg-white max-w-md mx-auto p-8 rounded-lg shadow-md mb-[50px]">
+                                    <h1 class="text-2xl font-semibold text-center mb-4">Phiếu Khám Bệnh </h1>
+                                    <div class="mb-4">
+                                        <label class="text-gray-600 font-semibold">Thông Tin Phòng Khám</label>
+                                        <p class="text-black font-medium">{{ $phieukhambenhs['hospital'] }}</p>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="text-gray-600 font-semibold">Chuyên Khoa:</label>
+                                        <p class="text-black font-medium">{{ $phieukhambenhs['specialty'] }}</p>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="text-gray-600 font-semibold">Bác Sĩ:</label>
+                                        <p class="text-black font-medium">{{ $phieukhambenhs['doctor'] }}</p>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="text-gray-600 font-semibold">Họ và Tên Bệnh Nhân:</label>
+                                        <p class="text-black font-medium">{{ $phieukhambenhs['name'] }} </p>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="text-gray-600 font-semibold">Ngày Sinh:</label>
+                                        <p class="text-black font-medium">{{ $phieukhambenhs['age'] }}</p>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="text-gray-600 font-semibold">Ngày Khám:</label>
+                                        <p class="text-black font-medium">{{ $phieukhambenhs['day'] }}</p>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="text-gray-600 font-semibold">Giờ Khám:</label>
+                                        <p class="text-black font-medium">{{ $phieukhambenhs['start_time'] }}</p>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="text-gray-600 font-semibold">Địa Chỉ Phòng Khám::</label>
+                                        <p class="text-black font-medium">{{ $phieukhambenhs['address'] }}</p>
+                                    </div>
+
+                                    <div class="mt-6">
+                                        <p class="text-center text-gray-700">Chúc bạn sức khỏe!</p>
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    @else
+                        Không có lịch khám
+                    @endif
+                </div>
+
+                <!-- Khung nhìn 3 -->
+                <div id="view3" class="hidden bg-red-100 p-4 rounded-lg mt-4">
+                    @if ($Notification != null)
+                        <h1>Bạn có {{ $Notification }} lịch khám sắp đến</h1>
+                    @else
+                        <h1>Bạn không có lịch khám</h1>
+                    @endif
+                </div>
+                <div id="view4" class="hidden bg-green-100 p-4 rounded-lg mt-4 overflow-y-auto"
+                    style="max-height: 700px;">
+                    @if ($phieukhambenh != 0)
+                        @foreach ($phieukhambenh as $phieukhambenhs)
+                            <?php
+                    // Chuyển đổi ngày từ chuỗi sang đối tượng Carbon
+                    $appointmentDate = \Carbon\Carbon::parse($phieukhambenhs['day']);
+                    
+                    // Kiểm tra xem ngày hẹn có lớn hơn ngày hiện tại không
+                    if ($appointmentDate->greaterThan(\Carbon\Carbon::now())) {
+                ?>
                             <div class="bg-white max-w-md mx-auto p-8 rounded-lg shadow-md mb-[50px]">
                                 <h1 class="text-2xl font-semibold text-center mb-4">Phiếu Khám Bệnh </h1>
                                 <div class="mb-4">
@@ -212,28 +298,33 @@
                                     <p class="text-black font-medium">{{ $phieukhambenhs['address'] }}</p>
                                 </div>
 
-                                <div class="mt-6">
-                                    <p class="text-center text-gray-700">Chúc bạn sức khỏe!</p>
-                                </div>
+
+                                <form class="yourFormClass" method="post" action="/huy-dat-lich">
+                                    @csrf
+                                    @method('DELETE')
+                                    <!-- Các trường thông tin -->
+                                    <!-- ... -->
+                                    <input type="hidden" name="appointment_id" class="appointmentId"
+                                        value="{{ $phieukhambenhs['id'] }}">
+                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded"
+                                        id="confirmCancelBtn">Xác Nhận Hủy Lịch</button>
+                                </form>
                             </div>
-                        </a>
+
+
+
+
+                            <?php
+                    }
+                ?>
                         @endforeach
-                    @else
-                        Không có lịch khám
                     @endif
                 </div>
 
-                <!-- Khung nhìn 3 -->
-                <div id="view3" class="hidden bg-red-100 p-4 rounded-lg mt-4">
-                @if ($Notification!=null)
-                   <h1>Bạn có  {{$Notification}} lịch khám sắp đến</h1>
-                @else
-                <h1>Bạn không có lịch khám</h1>
-                @endif
-                </div>
             </div>
         </div>
     </div>
+
     <footer class="bg-gray-800 text-white py-4 ">
         <div class="container mx-auto flex items-center justify-between">
             <div>
@@ -245,6 +336,28 @@
             </div>
         </div>
     </footer>
+    <!-- Đặt script trước thẻ đóng body -->
+
+    <script>
+        document.getElementById('confirmCancelBtn').addEventListener('click', function(event) {
+            // Ngăn chặn hành động mặc định của nút submit
+            event.preventDefault();
+
+            // Sử dụng hộp thoại confirm để xác nhận hành động
+            var confirmation = confirm('Bạn có chắc chắn muốn hủy lịch không?');
+
+            // Nếu người dùng chọn "OK" trong hộp thoại xác nhận
+            if (confirmation) {
+                // Lấy ID từ nút đã nhấp và đặt giá trị cho trường ẩn trong form
+                // Tự động kích hoạt sự kiện submit của form
+                document.querySelector('.yourFormClass').submit();
+            } else {
+                // Ngược lại, nếu người dùng chọn "Cancel", bạn có thể thực hiện các hành động khác ở đây
+                console.log('Hủy thao tác');
+            }
+        });
+    </script>
+
     <script>
         // Xử lý sự kiện khi nút được nhấn
         document.getElementById("button1").addEventListener("click", function() {
@@ -252,6 +365,7 @@
             document.getElementById("view1").style.display = "block";
             document.getElementById("view2").style.display = "none";
             document.getElementById("view3").style.display = "none";
+            document.getElementById("view4").style.display = "none";
         });
 
 
@@ -260,6 +374,7 @@
             document.getElementById("view1").style.display = "none";
             document.getElementById("view2").style.display = "block";
             document.getElementById("view3").style.display = "none";
+            document.getElementById("view4").style.display = "none";
         });
 
         document.getElementById("button3").addEventListener("click", function() {
@@ -267,6 +382,14 @@
             document.getElementById("view1").style.display = "none";
             document.getElementById("view2").style.display = "none";
             document.getElementById("view3").style.display = "block";
+            document.getElementById("view4").style.display = "none";
+        });
+        document.getElementById("button4").addEventListener("click", function() {
+            // Hiển thị khung nhìn 3 và ẩn các khung nhìn khác
+            document.getElementById("view1").style.display = "none";
+            document.getElementById("view2").style.display = "none";
+            document.getElementById("view3").style.display = "none";
+            document.getElementById("view4").style.display = "block";
         });
     </script>
 </body>

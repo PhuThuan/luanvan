@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http;
-
+use App\Http\Middleware\Permission;
+use App\Http\Middleware\check;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -66,5 +67,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'checklogin' => \App\Http\Middleware\CheckLogin::class,
         'authAdmin' => \App\Http\Middleware\AdminLogin::class,
+        'permission' => Permission::class,
+        'check' => check::class,
+
     ];
 }

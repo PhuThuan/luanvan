@@ -9,8 +9,10 @@ use App\Http\Requests\SettingCreateWorkscheduleRequest;
 use App\Models\createSettingWorkScheduleModel;
 use App\Models\DoctorModel;
 use App\Models\hospitalModel;
+use App\Models\notiNotificationModel;
 use App\Models\ScheduleModel;
 use App\Models\SpecialtyModel;
+use App\Models\User;
 use App\Models\WorkkingtimeModel;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -20,8 +22,10 @@ use Psy\Command\HistoryCommand;
 class workScheduleController extends Controller
 {
   //
-  public function index()
+  public function index($id=null)
   {
+    
+    $idRoute=0;
     $today = Carbon::now('Asia/Ho_Chi_Minh');
     $date = $today->toDateString();
     $dayN = $today->format('l');
@@ -31,6 +35,17 @@ class workScheduleController extends Controller
     $startOfWeek = $today->startOfWeek()->toDateString(); // Start of the week
     $endOfWeek = $today->endOfWeek()->toDateString(); // End of the week
     $workSchedules = [];
+if($id!=null){
+
+  
+  $idRoute=$id;
+
+  $endOfWeek = $today->copy()->addDays(7 * $id)->endOfWeek()->toDateString();
+  $startOfWeek = $today->copy()->addDays(7* $id)->startOfWeek()->toDateString();
+ 
+
+
+}
 
     // Retrieve working times for the specific week
     //lay thoi gian
@@ -48,6 +63,7 @@ class workScheduleController extends Controller
 
       if ($workingTime) {
         $workSchedule = [
+          'id'=>$scheduleItem['id'],
           'start_time' => $workingTime->start_time,
           'end_time' => $workingTime->end_time,
           'day' => $workingTime->day, // Assuming 'Day' is the correct column name
@@ -64,8 +80,10 @@ class workScheduleController extends Controller
     for ($i = 0; $i < 7; $i++) {
       $dateRange[] = $startDate->copy()->addDays($i)->format('Y-m-d');
     }
-
-    return view('doctor/workSchedule', ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'today' => $date, 'todayN' => $dayN, 'name' => $doctor['full_name'], 'workSchedules' => $workSchedules, 'dateRanges' => $dateRange]);
+    $user = Auth::user();
+    $noti1=notiNotificationModel::where('id_user',$user['id'])->where('read',0)->get();
+   
+    return view('doctor/workSchedule', ['startOfWeek' => $startOfWeek, 'endOfWeek' => $endOfWeek, 'today' => $date, 'todayN' => $dayN, 'name' => $doctor['full_name'], 'workSchedules' => $workSchedules, 'dateRanges' => $dateRange,'idRoute'=>$idRoute,'noti1'=> count($noti1)]);
   }
   public function createindex()
   {
@@ -251,8 +269,17 @@ class workScheduleController extends Controller
 
     // Add days to the start date
 
+   
+    $usernotification= $doctor = DoctorModel::where('id', $request->input('e_name'))->first();
+  
+    $notification=notiNotificationModel::create([
+      'id_user'=>$usernotification['id_user'],
+      'name'=>'Thông báo từ phòng khám',
+      'description'=>'Lịch làm việc đã được cập nhật',
+      'read'=>false,
+    ]);
 
-
+   
     $settings = $sortedSettings = createSettingWorkScheduleModel::where('id_hospital', $hospital['id'])
       ->orderBy('start_time')
       ->get();

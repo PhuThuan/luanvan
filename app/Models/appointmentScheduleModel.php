@@ -12,6 +12,7 @@ class appointmentScheduleModel extends Model
     protected $table = 'appointmentschedule';
     protected $fillable = [
         'id_patient_records',
+        'id_ws',
         'name',
         'age',
         'gender',
@@ -24,4 +25,9 @@ class appointmentScheduleModel extends Model
         'day',
         'status',
     ];
+   
+    public function patientRecord()
+    {
+        return $this->belongsTo(patientRecordsModel::class, 'id_patient_records', 'id');
+    }
 }
